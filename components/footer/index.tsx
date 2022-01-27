@@ -2,10 +2,8 @@
 import React from "react";
 import NextLink from "next/link";
 
-import style from "./index.module.scss";
-
-export const Navigation: React.ComponentType = () => (
-    <nav className={ style.nav }>
+export const Footer: React.ComponentType = () => (
+    <nav>
         <NextLink href="/">
             { "Home" }
         </NextLink>
