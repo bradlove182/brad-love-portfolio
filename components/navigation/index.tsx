@@ -1,19 +1,31 @@
 
 import React from "react";
-import NextLink from "next/link";
+import { useRouter } from "next/router";
 
+import { routes } from "../../routing/routes";
+
+import { NavItem } from "./item";
 import style from "./index.module.scss";
 
-export const Navigation: React.ComponentType = () => (
-    <nav className={ style.nav }>
-        <NextLink href="/">
-            { "Home" }
-        </NextLink>
-        <NextLink href="/about">
-            { "About" }
-        </NextLink>
-        <NextLink href="/projects">
-            { "Projects" }
-        </NextLink>
-    </nav>
-);
+export const Navigation: React.ComponentType = () => {
+
+    const router = useRouter();
+
+    return (
+        <nav className={ style.nav }>
+            {
+                routes.map((route) => (
+                    <NavItem
+                        active={ router.route === route.path }
+                        key={ route.name }
+                        name={ route.name }
+                        path={ route.path }
+                    >
+                        { route.name }
+                    </NavItem>
+                ))
+            }
+        </nav>
+    );
+
+};

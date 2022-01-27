@@ -2,9 +2,14 @@
 .nav{
 
     align-items: center;
+    border-bottom: 1px solid var(--color-border);
     display: flex;
     gap: 1em;
     justify-content: flex-end;
+    left: 0;
     padding: 1em;
+    position: fixed;
+    top: 0;
+    width: 100vw;
 
 }
