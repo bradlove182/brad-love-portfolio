@@ -1,12 +1,12 @@
 import React from "react";
 
+import { Hero } from "../components/hero";
+
 import type { NextPage } from "next";
 
 const Home: NextPage = () => (
     <div>
-        <h1>
-            { "Home Page" }
-        </h1>
+        <Hero />
     </div>
 );
 
