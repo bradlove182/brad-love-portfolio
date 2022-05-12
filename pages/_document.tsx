@@ -15,7 +15,6 @@ class MyDocument extends Document{
                 <Head>
                     <link href="https://fonts.googleapis.com" rel="preconnect" />
                     <link crossOrigin="true" href="https://fonts.gstatic.com" rel="preconnect" />
-                    <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet" />
                 </Head>
                 <body>
                     <Main />

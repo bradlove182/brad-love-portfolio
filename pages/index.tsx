@@ -1,13 +1,15 @@
 import React from "react";
 
-import { Hero } from "../components/hero";
+import { ScrollingText } from "../components/scrolling-text";
+import { ScrollIndicator } from "../components/scroll-indicator";
 
 import type { NextPage } from "next";
 
 const Home: NextPage = () => (
     <div>
-        <Hero />
+        <ScrollingText />
+        <ScrollIndicator />
     </div>
-);
 
+);
 export default Home;

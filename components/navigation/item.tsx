@@ -5,7 +5,7 @@ import NextLink from "next/link";
 import style from "./item.module.scss";
 
 export interface NavItemProps {
-    active: boolean;
+    active?: boolean;
     name: string;
     path: string;
 }

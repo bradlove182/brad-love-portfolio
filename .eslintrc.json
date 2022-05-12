@@ -1,3 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "@newsteam"]
+  "extends": ["next/core-web-vitals", "@newsteam"],
+  "rules": {
+      "no-magic-numbers":"off",
+      "id-length":"off"
+  }
 }

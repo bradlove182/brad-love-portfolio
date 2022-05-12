@@ -3,19 +3,19 @@ import Head from "next/head";
 
 import type { NextPage } from "next";
 
-const Projects: NextPage = () => (
+const Work: NextPage = () => (
     <div>
         <Head>
             <title>
-                { "Projects" }
+                { "Work" }
             </title>
             <meta content="Brad Love" name="description" />
             <link href="/favicon.ico" rel="icon" />
         </Head>
         <h1>
-            { "Projects Page" }
+            { "Work Page" }
         </h1>
     </div>
 );
 
-export default Projects;
+export default Work;

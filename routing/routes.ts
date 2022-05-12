@@ -6,12 +6,16 @@ export interface Route {
 
 export const routes: Route[] = [
     {
-        name: "Home",
+        name: "Bradley Love",
         path: "/"
     },
     {
-        name: "Projects",
-        path: "/projects"
+        name: "Work",
+        path: "/work"
+    },
+    {
+        name: "About",
+        path: "/about"
     },
     {
         name: "Contact",

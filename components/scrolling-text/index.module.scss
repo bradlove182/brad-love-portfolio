@@ -1,0 +1,65 @@
+
+.container{
+
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100vh;
+    justify-content: center;
+    mix-blend-mode: difference;
+    width: 100vw;
+
+    .small{
+
+        align-self: flex-end;
+        padding: 0 2em;
+
+        &:first-of-type{
+
+            align-self: flex-start;
+
+        }
+
+    }
+
+    .marquee{
+
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+
+        .track{
+
+            display: flex;
+            flex-flow: row nowrap;
+            width: 100%;
+
+            .text{
+
+                font-size: 12vw;
+                font-weight: bold;
+                line-height: 12vw;
+                text-transform: uppercase;
+                user-select: none;
+                white-space: nowrap;
+
+                span{
+
+                    -webkit-text-fill-color: var(--color-background);
+                    -webkit-text-stroke: 1px var(--color-font);
+
+                }
+
+                &:hover{
+
+                    -webkit-text-fill-color: var(--color-font);
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

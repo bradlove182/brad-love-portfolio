@@ -12,20 +12,20 @@ export const Navigation: React.ComponentType = () => {
     const router = useRouter();
 
     return (
-        <nav className={ style.nav }>
-            {
-                routes.map((route) => (
-                    <NavItem
-                        active={ router.route === route.path }
-                        key={ route.name }
-                        name={ route.name }
-                        path={ route.path }
-                    >
-                        { route.name }
-                    </NavItem>
-                ))
-            }
-        </nav>
+        <header className={ style.header }>
+            <nav>
+                {
+                    routes.filter((route) => route.path !== "/").map((route) => (
+                        <NavItem
+                            active={ router.route === route.path }
+                            key={ route.name }
+                            name={ route.name }
+                            path={ route.path }
+                        />
+                    ))
+                }
+            </nav>
+        </header>
     );
 
 };
