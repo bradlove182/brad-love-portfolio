@@ -2,14 +2,19 @@ import React from "react";
 
 import { ScrollingText } from "../components/scrolling-text";
 import { ScrollIndicator } from "../components/scroll-indicator";
+import { About } from "../components/about";
+import { RecentProjects } from "../components/recent-projects";
+import { Contact } from "../components/contact";
 
 import type { NextPage } from "next";
 
 const Home: NextPage = () => (
-    <div>
+    <React.Fragment>
         <ScrollingText />
         <ScrollIndicator />
-    </div>
-
+        <About />
+        <RecentProjects />
+        <Contact />
+    </React.Fragment>
 );
 export default Home;

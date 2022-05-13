@@ -1,0 +1,28 @@
+
+.about{
+
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 25vw;
+    justify-content: space-between;
+    mix-blend-mode: difference;
+    padding: 6em 10vw;
+
+    .large{
+
+        font-size: 1.5em;
+        margin-bottom: 2em;
+        text-transform: uppercase;
+
+    }
+
+    .inline{
+
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 5vw;
+        justify-content: space-between;
+
+    }
+
+}

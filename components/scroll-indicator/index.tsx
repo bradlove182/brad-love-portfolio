@@ -6,7 +6,8 @@ import style from "./index.module.scss";
 export const ScrollIndicator: React.ComponentType = () => (
     <div className={ style.scroller }>
         <motion.div
-            animate={ {
+            className={ style.indicator }
+            whileInView={ {
                 opacity: [0, 1],
                 transition: {
                     delay: 3,
@@ -24,7 +25,6 @@ export const ScrollIndicator: React.ComponentType = () => (
                 },
                 y: ["-100%", "100%"]
             } }
-            className={ style.indicator }
         />
     </div>
 );

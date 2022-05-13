@@ -48,8 +48,8 @@ const MyApp = ({
             </Head>
             <Suspense fallback={ "Loading" }>
                 <BlobRender blobState={ blobState } />
+                <Component { ...pageProps } />
             </Suspense>
-            <Component { ...pageProps } />
         </React.Fragment>
     );
 

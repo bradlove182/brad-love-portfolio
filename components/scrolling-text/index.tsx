@@ -2,6 +2,11 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
+import {
+    BlobEvents,
+    dispatchBlobEvent
+} from "../blob/events";
+
 import style from "./index.module.scss";
 
 import type { Variants } from "framer-motion";
@@ -36,9 +41,15 @@ export const ScrollingText: React.ComponentType = () => {
     return (
         <motion.div
             className={ style.container }
+            onViewportEnter={ dispatchBlobEvent(BlobEvents.CENTER) }
+            viewport={ {
+                amount: 0.75
+            } }
         >
             <motion.div
-                animate={ {
+                className={ style.small }
+                viewport={ { once: true } }
+                whileInView={ {
                     opacity: [0, 1],
                     transition: {
                         opacity: {
@@ -52,7 +63,6 @@ export const ScrollingText: React.ComponentType = () => {
                     },
                     y: ["-100%", "0%"]
                 } }
-                className={ style.small }
             >
                 { "Hi, I'm Brad. I'm a" }
             </motion.div>
@@ -60,7 +70,9 @@ export const ScrollingText: React.ComponentType = () => {
                 className={ style.marquee }
             >
                 <motion.div
-                    animate={ {
+                    className={ style.track }
+                    viewport={ { once: true } }
+                    whileInView={ {
                         opacity: [0, 1],
                         transition: {
                             opacity: {
@@ -70,7 +82,6 @@ export const ScrollingText: React.ComponentType = () => {
                             }
                         }
                     } }
-                    className={ style.track }
                 >
                     {
                         Array.from({ length: 3 }, (value, index) => (
@@ -89,7 +100,9 @@ export const ScrollingText: React.ComponentType = () => {
                     }
                 </motion.div>
                 <motion.div
-                    animate={ {
+                    className={ style.track }
+                    viewport={ { once: true } }
+                    whileInView={ {
                         opacity: [0, 1],
                         transition: {
                             opacity: {
@@ -99,7 +112,6 @@ export const ScrollingText: React.ComponentType = () => {
                             }
                         }
                     } }
-                    className={ style.track }
                 >
                     {
                         Array.from({ length: 3 }, (value, index) => (
@@ -119,7 +131,9 @@ export const ScrollingText: React.ComponentType = () => {
                 </motion.div>
             </div>
             <motion.div
-                animate={ {
+                className={ style.small }
+                viewport={ { once: true } }
+                whileInView={ {
                     opacity: [0, 1],
                     transition: {
                         delay: 2,
@@ -134,7 +148,6 @@ export const ScrollingText: React.ComponentType = () => {
                     },
                     y: ["100%", "0%"]
                 } }
-                className={ style.small }
             >
                 { "based in Cape Town, South Africa." }
             </motion.div>

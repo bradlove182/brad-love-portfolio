@@ -8,6 +8,7 @@ import {
 import { Vector3 } from "three";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { makeNoise3D } from "fast-simplex-noise";
+import { useViewportScroll } from "framer-motion";
 
 import { BlobEvents } from "./events";
 
@@ -26,48 +27,44 @@ export const Blob: React.ComponentType<BlobProps> = ({
 }) => {
 
     const blob = useRef<Mesh>(undefined!);
+    const vector = useRef<Vector3>(new Vector3());
     const gradiantMap = useLoader(TextureLoader, "/fiveTone.jpeg");
 
-    useFrame(({
-        camera,
-        clock
-    }) => {
+    const { scrollYProgress } = useViewportScroll();
 
-        const animationSpeed = clock.getElapsedTime() * 0.05;
+    useFrame(({
+        clock
+    }, delta) => {
+
+        const speed = delta * 2;
         const time = clock.getElapsedTime() * 0.25;
         const numberOfSpikes = 1;
-        const vertex = new Vector3();
 
         switch(blobState){
 
             case BlobEvents.CENTER :
-                camera.position.lerp(new Vector3(0, 0, 4), animationSpeed);
-                blob.current.position.lerp(new Vector3(0, 0, 0), animationSpeed);
-                camera.updateProjectionMatrix();
+                blob.current.scale.lerp(vector.current.setScalar(1.2), speed);
+                blob.current.position.lerp(vector.current.setScalar(0), speed);
                 break;
 
             case BlobEvents.LEFT :
-                camera.position.lerp(new Vector3(0, 0, 3), animationSpeed);
-                blob.current.position.lerp(new Vector3(-2, 0, 0), animationSpeed);
-                camera.updateProjectionMatrix();
+                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
+                blob.current.position.lerp(vector.current.set(-5 * scrollYProgress.get(), 0, 0), speed);
                 break;
 
             case BlobEvents.RIGHT :
-                camera.position.lerp(new Vector3(0, 0, 3), animationSpeed);
-                blob.current.position.lerp(new Vector3(2, 0, 0), animationSpeed);
-                camera.updateProjectionMatrix();
+                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
+                blob.current.position.lerp(vector.current.set(3 * scrollYProgress.get(), 0, 0), speed);
                 break;
 
             case BlobEvents.TOP :
-                camera.position.lerp(new Vector3(0, 0, 2), animationSpeed);
-                blob.current.position.lerp(new Vector3(0, 3, 0), animationSpeed);
-                camera.updateProjectionMatrix();
+                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
+                blob.current.position.lerp(vector.current.set(0, 3 * scrollYProgress.get(), 0), speed);
                 break;
 
             case BlobEvents.BOTTOM :
-                camera.position.lerp(new Vector3(0, 0, 2), animationSpeed);
-                blob.current.position.lerp(new Vector3(0, -3, 0), animationSpeed);
-                camera.updateProjectionMatrix();
+                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
+                blob.current.position.lerp(vector.current.set(0, -3 * scrollYProgress.get(), 0), speed);
                 break;
 
             default :
@@ -79,13 +76,21 @@ export const Blob: React.ComponentType<BlobProps> = ({
         const positionArray = position.array;
         const normal = blob.current.geometry.getAttribute("normal");
 
+        blob.current.rotation.y = scrollYProgress.get();
+
         // eslint-disable-next-line more/no-c-like-loops -- array is of type ArrayLike so this is easier
         for(let index = 0; index < positionArray.length; index++){
 
-            vertex.fromBufferAttribute(position, index);
-            vertex.normalize();
-            vertex.multiplyScalar(BLOB_SIZE + 0.2 * noise(vertex.x * numberOfSpikes + time, vertex.y * numberOfSpikes + time, vertex.z * numberOfSpikes));
-            position.setXYZ(index, vertex.x, vertex.y, vertex.z);
+            vector.current.fromBufferAttribute(position, index);
+            vector.current.normalize();
+            vector.current.multiplyScalar(
+                BLOB_SIZE + 0.2 * noise(
+                    vector.current.x * numberOfSpikes + time,
+                    vector.current.y * numberOfSpikes + time,
+                    vector.current.z * numberOfSpikes + time
+                )
+            );
+            position.setXYZ(index, vector.current.x, vector.current.y, vector.current.z);
 
         }
 

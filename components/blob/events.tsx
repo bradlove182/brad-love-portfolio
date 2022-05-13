@@ -23,7 +23,7 @@ export type BlobEventProps = {
     [key in BlobEvents]?: EventListenerOrEventListenerObject;
 };
 
-export const dispatchBlobEvent = (key: BlobEvents): void => {
+export const dispatchBlobEvent = (key: BlobEvents) => (): void => {
 
     document.dispatchEvent(new CustomEvent<BlobEvents>(key, {
         detail: key
