@@ -48,18 +48,16 @@ export const ScrollingText: React.ComponentType = () => {
         >
             <motion.div
                 className={ style.small }
+                style={ {
+                    opacity: 0
+                } }
                 viewport={ { once: true } }
                 whileInView={ {
                     opacity: [0, 1],
                     transition: {
-                        opacity: {
-                            duration: 1,
-                            ease: "easeOut"
-                        },
-                        y: {
-                            duration: 1,
-                            ease: "easeOut"
-                        }
+                        delay: 1,
+                        duration: 1,
+                        ease: "easeOut"
                     },
                     y: ["-100%", "0%"]
                 } }
@@ -71,15 +69,16 @@ export const ScrollingText: React.ComponentType = () => {
             >
                 <motion.div
                     className={ style.track }
+                    style={ {
+                        opacity: 0
+                    } }
                     viewport={ { once: true } }
                     whileInView={ {
                         opacity: [0, 1],
                         transition: {
-                            opacity: {
-                                delay: 1,
-                                duration: 2,
-                                ease: "easeOut"
-                            }
+                            delay: 1.5,
+                            duration: 2,
+                            ease: "easeOut"
                         }
                     } }
                 >
@@ -101,15 +100,16 @@ export const ScrollingText: React.ComponentType = () => {
                 </motion.div>
                 <motion.div
                     className={ style.track }
+                    style={ {
+                        opacity: 0
+                    } }
                     viewport={ { once: true } }
                     whileInView={ {
                         opacity: [0, 1],
                         transition: {
-                            opacity: {
-                                delay: 1.5,
-                                duration: 2,
-                                ease: "easeOut"
-                            }
+                            delay: 2,
+                            duration: 2,
+                            ease: "easeOut"
                         }
                     } }
                 >
@@ -132,19 +132,16 @@ export const ScrollingText: React.ComponentType = () => {
             </div>
             <motion.div
                 className={ style.small }
+                style={ {
+                    opacity: 0
+                } }
                 viewport={ { once: true } }
                 whileInView={ {
                     opacity: [0, 1],
                     transition: {
-                        delay: 2,
-                        opacity: {
-                            duration: 1,
-                            ease: "easeOut"
-                        },
-                        y: {
-                            duration: 1,
-                            ease: "easeOut"
-                        }
+                        delay: 2.5,
+                        duration: 1,
+                        ease: "easeOut"
                     },
                     y: ["100%", "0%"]
                 } }

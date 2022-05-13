@@ -1,31 +1,33 @@
 
 .contact{
 
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 25vw;
+    display: grid;
+    grid-column-gap: 1.25em;
+    grid-template-columns: repeat(12, 1fr);
     mix-blend-mode: difference;
-    padding: 6em 10vw;
+    padding: 6em var(--horizontal-padding);
 
-    .large{
+    .work{
 
-        font-size: 1.5em;
-        margin-bottom: 2em;
-        text-transform: uppercase;
+        grid-column: 4 / 6;
 
     }
 
-    .inline{
+    .message{
 
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 5vw;
+        grid-column: 7 / 11;
 
-        &:first-child{
+    }
 
-            width: 25%;
+    .email{
 
-        }
+        font-size: 10vw;
+        font-weight: bold;
+        grid-column: 1 / 13;
+        line-height: 10vw;
+        margin-top: 1em;
+        text-transform: uppercase;
+        word-wrap: break-word;
 
     }
 

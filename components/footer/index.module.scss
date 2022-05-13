@@ -1,0 +1,23 @@
+
+.footer{
+
+    display: grid;
+    grid-column-gap: 1.25em;
+    grid-template-columns: repeat(12, 1fr);
+    mix-blend-mode: difference;
+    padding: 2em var(--horizontal-padding);
+
+    .title{
+
+        grid-column: 1 / 4;
+
+    }
+
+    .links{
+
+        align-self: flex-end;
+        grid-column: 12 / 12;
+
+    }
+
+}

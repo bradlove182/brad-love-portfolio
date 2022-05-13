@@ -17,6 +17,7 @@ import type { Mesh } from "three";
 const noise = makeNoise3D();
 
 const BLOB_SIZE = 2;
+const BLOB_INITIAL_SCALE = new Vector3();
 
 export interface BlobProps{
     blobState: BlobEvents;
@@ -103,7 +104,7 @@ export const Blob: React.ComponentType<BlobProps> = ({
     });
 
     return (
-        <mesh ref={ blob }>
+        <mesh ref={ blob } scale={ BLOB_INITIAL_SCALE }>
             { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
             <sphereGeometry args={ [BLOB_SIZE, 128, 128] } />
             <meshToonMaterial color="#faff00" gradientMap={ gradiantMap } />

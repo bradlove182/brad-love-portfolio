@@ -1,5 +1,5 @@
 
-import React, { Suspense } from "react";
+import React from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
@@ -9,10 +9,13 @@ import {
     BlobEvents,
     useBlobEvents
 } from "../components/blob/events";
+import { Footer } from "../components/footer";
 
 import type { AppProps } from "next/app";
 
-const BlobRender = dynamic(() => import("../components/blob"));
+const BlobRender = dynamic(() => import("../components/blob"), {
+    ssr: false
+});
 
 const MyApp = ({
     Component,
@@ -46,10 +49,9 @@ const MyApp = ({
                 <meta content="Brad Love" name="description" />
                 <link href="/favicon.ico" rel="icon" />
             </Head>
-            <Suspense fallback={ "Loading" }>
-                <BlobRender blobState={ blobState } />
-                <Component { ...pageProps } />
-            </Suspense>
+            <BlobRender blobState={ blobState } />
+            <Component { ...pageProps } />
+            <Footer />
         </React.Fragment>
     );
 

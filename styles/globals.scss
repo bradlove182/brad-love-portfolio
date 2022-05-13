@@ -17,6 +17,7 @@
     --color-background: #000;
     --color-border: #334;
     --color-font: #faff00;
+    --horizontal-padding: 10vw;
     font-size: 20px;
 
 }
@@ -26,20 +27,7 @@ body {
 
     background-color: var(--color-background);
     color: var(--color-font);
-    font-family:
-        "JetBrains Mono",
-        monospace,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Roboto",
-        "Oxygen",
-        "Ubuntu",
-        "Cantarell",
-        "Fira Sans",
-        "Droid Sans",
-        "Helvetica Neue",
-        sans-serif;
+    font-family: "JetBrains Mono", monospace;
     margin: 0;
     padding: 0;
 

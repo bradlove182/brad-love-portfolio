@@ -1,17 +1,23 @@
 
 import React from "react";
-import NextLink from "next/link";
+import { motion } from "framer-motion";
+
+import style from "./index.module.scss";
 
 export const Footer: React.ComponentType = () => (
-    <nav>
-        <NextLink href="/">
-            { "Home" }
-        </NextLink>
-        <NextLink href="/about">
-            { "About" }
-        </NextLink>
-        <NextLink href="/projects">
-            { "Projects" }
-        </NextLink>
-    </nav>
+    <motion.footer
+        className={ style.footer }
+    >
+        <motion.div className={ style.title }>
+            { "Bradley Love" }
+            <br />
+            { "Creative Developer" }
+        </motion.div>
+        <motion.div className={ style.links }>
+            <a href="https://github.com/bradlove182" rel="noreferrer" target="_blank">
+                { "Github" }
+            </a>
+        </motion.div>
+    </motion.footer>
 );
+
