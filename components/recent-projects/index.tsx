@@ -20,18 +20,11 @@ export const RecentProjects: React.ComponentType = () => (
         <motion.div>
             { "/02" }
         </motion.div>
-        <motion.div>
-            <motion.div className={ style.inline }>
-                <motion.div>
-                    { "Recent Projects" }
-                </motion.div>
-                <motion.div>
-                    { "Creative Development" }
-                </motion.div>
-            </motion.div>
-            <motion.div className={ style.large }>
-                { "TBA" }
-            </motion.div>
+        <motion.div className={ style.projects }>
+            { "Recent Projects" }
+        </motion.div>
+        <motion.div className={ style.creative }>
+            { "Creative Development" }
         </motion.div>
     </motion.div>
 );

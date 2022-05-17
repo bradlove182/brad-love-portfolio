@@ -1,27 +1,21 @@
 
 .recent{
 
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 25vw;
+    column-gap: 1.25em;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
     mix-blend-mode: difference;
-    padding: 6em 10vw;
+    padding: 6em var(--horizontal-padding);
 
-    .large{
+    .projects{
 
-        font-size: 1.5em;
-        margin-bottom: 2em;
-        text-transform: uppercase;
+        grid-column: 4 / 6;
 
     }
 
-    .inline{
+    .creative{
 
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 5vw;
-        justify-content: space-between;
-        width: 100%;
+        grid-column: 7 / 11;
 
     }
 

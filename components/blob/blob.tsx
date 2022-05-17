@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers -- Bru */
 
-import React, { useRef } from "react";
+import React, {
+    useEffect,
+    useRef
+} from "react";
 import {
     useFrame,
     useLoader
@@ -28,10 +31,31 @@ export const Blob: React.ComponentType<BlobProps> = ({
 }) => {
 
     const blob = useRef<Mesh>(undefined!);
-    const vector = useRef<Vector3>(new Vector3());
+    const positionVector = useRef<Vector3>(new Vector3());
+    const scaleVector = useRef<Vector3>(new Vector3());
+    const mouseVector = useRef<Vector3>(new Vector3());
     const gradiantMap = useLoader(TextureLoader, "/fiveTone.jpeg");
 
     const { scrollYProgress } = useViewportScroll();
+
+    useEffect(() => {
+
+        const mouseHandler = (event: MouseEvent): void => {
+
+            const mouseX = event.clientX / window.innerWidth * 2 - 1;
+            const mouseY = event.clientY / window.innerHeight * 2 - 1;
+
+            mouseVector.current.set(mouseX, -mouseY, 0);
+
+        };
+
+        window.addEventListener("mousemove", mouseHandler);
+
+        return () => {
+            window.removeEventListener("mousemove", mouseHandler);
+        };
+
+    }, []);
 
     useFrame(({
         clock
@@ -44,34 +68,38 @@ export const Blob: React.ComponentType<BlobProps> = ({
         switch(blobState){
 
             case BlobEvents.CENTER :
-                blob.current.scale.lerp(vector.current.setScalar(1.2), speed);
-                blob.current.position.lerp(vector.current.setScalar(0), speed);
+                scaleVector.current.setScalar(1.2);
+                positionVector.current.setScalar(0);
                 break;
 
             case BlobEvents.LEFT :
-                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
-                blob.current.position.lerp(vector.current.set(-5 * scrollYProgress.get(), 0, 0), speed);
+                scaleVector.current.setScalar(1.4);
+                positionVector.current.set(-5, 0, 0);
                 break;
 
             case BlobEvents.RIGHT :
-                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
-                blob.current.position.lerp(vector.current.set(3 * scrollYProgress.get(), 0, 0), speed);
+                scaleVector.current.setScalar(1.4);
+                positionVector.current.set(5, 0, 0);
                 break;
 
             case BlobEvents.TOP :
-                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
-                blob.current.position.lerp(vector.current.set(0, 3 * scrollYProgress.get(), 0), speed);
+                scaleVector.current.setScalar(1.4);
+                positionVector.current.set(0, 3, 0);
                 break;
 
             case BlobEvents.BOTTOM :
-                blob.current.scale.lerp(vector.current.setScalar(1.4), speed);
-                blob.current.position.lerp(vector.current.set(0, -3 * scrollYProgress.get(), 0), speed);
+                scaleVector.current.setScalar(1.4);
+                positionVector.current.set(0, -3, 0);
                 break;
 
             default :
                 break;
 
         }
+
+        blob.current.scale.lerp(scaleVector.current, speed);
+        blob.current.position.lerp(positionVector.current, speed);
+        blob.current.position.lerp(mouseVector.current, speed);
 
         const position = blob.current.geometry.getAttribute("position");
         const positionArray = position.array;
@@ -82,16 +110,16 @@ export const Blob: React.ComponentType<BlobProps> = ({
         // eslint-disable-next-line more/no-c-like-loops -- array is of type ArrayLike so this is easier
         for(let index = 0; index < positionArray.length; index++){
 
-            vector.current.fromBufferAttribute(position, index);
-            vector.current.normalize();
-            vector.current.multiplyScalar(
+            positionVector.current.fromBufferAttribute(position, index);
+            positionVector.current.normalize();
+            positionVector.current.multiplyScalar(
                 BLOB_SIZE + 0.2 * noise(
-                    vector.current.x * numberOfSpikes + time,
-                    vector.current.y * numberOfSpikes + time,
-                    vector.current.z * numberOfSpikes + time
+                    positionVector.current.x * numberOfSpikes + time,
+                    positionVector.current.y * numberOfSpikes + time,
+                    positionVector.current.z * numberOfSpikes + time
                 )
             );
-            position.setXYZ(index, vector.current.x, vector.current.y, vector.current.z);
+            position.setXYZ(index, positionVector.current.x, positionVector.current.y, positionVector.current.z);
 
         }
 
