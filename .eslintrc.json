@@ -1,7 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "@newsteam"],
   "rules": {
-      "no-magic-numbers":"off",
+      "@typescript-eslint/no-magic-numbers":"off",
       "id-length":"off"
   }
 }
