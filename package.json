@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-three/drei": "^9.7.1",
     "@react-three/fiber": "^8.0.13",
+    "@react-three/postprocessing": "^2.3.2",
     "fast-simplex-noise": "^4.0.0",
     "framer-motion": "^6.3.3",
     "matter-js": "^0.18.0",
@@ -17,9 +18,11 @@
     "pixi-filters": "^4.1.6",
     "pixi-projection": "^0.4.4",
     "pixi.js": "^6.3.2",
+    "postprocessing": "^6.26.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "three": "^0.140.2"
+    "three": "^0.140.2",
+    "three-stdlib": "^2.10.1"
   },
   "devDependencies": {
     "@newsteam/eslint-config": "^0.0.116",

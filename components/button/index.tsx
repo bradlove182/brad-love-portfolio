@@ -3,8 +3,8 @@ import React from "react";
 
 import style from "./index.module.scss";
 
-export interface ButtonProps {
-    onClick: () => void;
+export interface ButtonProps{
+    onClick?: () => void;
     text: string;
     variant?: "primary" | "secondary";
 }

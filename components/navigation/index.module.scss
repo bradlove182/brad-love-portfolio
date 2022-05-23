@@ -1,25 +1,22 @@
 
 .header{
 
-    align-items: flex-end;
-    bottom: 0;
-    display: none;
-    flex-flow: row nowrap;
-    gap: 1em;
-    height: 100%;
-    justify-content: flex-end;
-    padding: 32px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    mix-blend-mode: difference;
+    padding: var(--padding);
     position: fixed;
-    right: 0;
+    top: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 1;
 
     nav{
 
-        counter-reset: nav;
         display: flex;
-        flex-flow: column nowrap;
-        font-size: 7vw;
+        flex-flow: row nowrap;
+        font-size: 1em;
         font-weight: bold;
         height: fit-content;
         text-transform: uppercase;
@@ -27,18 +24,11 @@
         span{
 
             align-items: center;
+            color: var(--font-color);
             display: flex;
             flex-flow: row nowrap;
             gap: 16px;
             justify-content: flex-end;
-
-            &:after{
-
-                content: "/0" counter(nav);
-                counter-increment: nav;
-                font-size: 3vw;
-
-            }
 
         }
 

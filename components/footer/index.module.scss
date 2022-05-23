@@ -5,7 +5,7 @@
     grid-column-gap: 1.25em;
     grid-template-columns: repeat(12, 1fr);
     mix-blend-mode: difference;
-    padding: 2em var(--horizontal-padding);
+    padding: var(--padding);
 
     .title{
 

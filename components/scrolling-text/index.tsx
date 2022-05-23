@@ -15,6 +15,7 @@ export const ScrollingText: React.ComponentType = () => {
 
     const marqueeVariants: Variants = useMemo(() => ({
         left: {
+            perspective: ["0cm", "5cm"],
             transition: {
                 x: {
                     duration: 30,
@@ -46,24 +47,6 @@ export const ScrollingText: React.ComponentType = () => {
                 amount: 0.75
             } }
         >
-            <motion.div
-                className={ style.small }
-                style={ {
-                    opacity: 0
-                } }
-                viewport={ { once: true } }
-                whileInView={ {
-                    opacity: [0, 1],
-                    transition: {
-                        delay: 1,
-                        duration: 1,
-                        ease: "easeOut"
-                    },
-                    y: ["-100%", "0%"]
-                } }
-            >
-                { "Hi, I'm Brad. I'm a" }
-            </motion.div>
             <div
                 className={ style.marquee }
             >
@@ -90,7 +73,11 @@ export const ScrollingText: React.ComponentType = () => {
                                 key={ index }
                                 variants={ marqueeVariants }
                             >
-                                { "Creative" }
+                                { "A" }
+                                <span>
+                                    {"~"}
+                                </span>
+                                { "Developer" }
                                 <span>
                                     {"~"}
                                 </span>
@@ -121,7 +108,11 @@ export const ScrollingText: React.ComponentType = () => {
                                 key={ index }
                                 variants={ marqueeVariants }
                             >
-                                { "Developer" }
+                                { "Or" }
+                                <span>
+                                    {"~"}
+                                </span>
+                                { "Something" }
                                 <span>
                                     {"~"}
                                 </span>
@@ -130,24 +121,6 @@ export const ScrollingText: React.ComponentType = () => {
                     }
                 </motion.div>
             </div>
-            <motion.div
-                className={ style.small }
-                style={ {
-                    opacity: 0
-                } }
-                viewport={ { once: true } }
-                whileInView={ {
-                    opacity: [0, 1],
-                    transition: {
-                        delay: 2.5,
-                        duration: 1,
-                        ease: "easeOut"
-                    },
-                    y: ["100%", "0%"]
-                } }
-            >
-                { "based in Cape Town, South Africa." }
-            </motion.div>
         </motion.div>
     );
 };

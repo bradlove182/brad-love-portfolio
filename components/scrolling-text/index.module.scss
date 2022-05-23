@@ -9,20 +9,6 @@
     mix-blend-mode: difference;
     width: 100vw;
 
-    .small{
-
-        align-self: flex-end;
-        font-weight: bold;
-        padding: 0 var(--horizontal-padding);
-
-        &:first-of-type{
-
-            align-self: flex-start;
-
-        }
-
-    }
-
     .marquee{
 
         overflow: hidden;
@@ -37,17 +23,17 @@
 
             .text{
 
-                font-size: 12vw;
+                font-size: 16vw;
                 font-weight: bold;
-                line-height: 12vw;
+                line-height: 16vw;
                 text-transform: uppercase;
                 user-select: none;
                 white-space: nowrap;
 
                 span{
 
-                    -webkit-text-fill-color: var(--color-background);
-                    -webkit-text-stroke: 1px var(--color-font);
+                    -webkit-text-fill-color: transparent;
+                    -webkit-text-stroke: 4px var(--color-font);
 
                 }
 
