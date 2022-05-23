@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers -- Bru */
 
 import React, {
     useEffect,
@@ -102,5 +101,3 @@ export const Blob: React.ComponentType = () => {
         </Select>
     );
 };
-
-/* eslint-enable @typescript-eslint/no-magic-numbers -- Bru */
