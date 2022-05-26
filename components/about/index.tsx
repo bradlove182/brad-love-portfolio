@@ -42,7 +42,7 @@ export const About: React.ComponentType = () => (
             } }
             whileInView={ "visible" }
         >
-            { "/01" }
+            { "About Me" }
         </motion.div>
         <motion.div className={ style.bio }>
             <motion.div

@@ -73,11 +73,7 @@ export const ScrollingText: React.ComponentType = () => {
                                 key={ index }
                                 variants={ marqueeVariants }
                             >
-                                { "A" }
-                                <span>
-                                    {"~"}
-                                </span>
-                                { "Developer" }
+                                { "Creative" }
                                 <span>
                                     {"~"}
                                 </span>
@@ -108,11 +104,7 @@ export const ScrollingText: React.ComponentType = () => {
                                 key={ index }
                                 variants={ marqueeVariants }
                             >
-                                { "Or" }
-                                <span>
-                                    {"~"}
-                                </span>
-                                { "Something" }
+                                { "Devloper" }
                                 <span>
                                     {"~"}
                                 </span>

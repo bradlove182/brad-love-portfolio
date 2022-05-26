@@ -1,8 +1,5 @@
 
-import React, {
-    useEffect,
-    useRef
-} from "react";
+import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 import { useViewportScroll } from "framer-motion";
@@ -20,30 +17,9 @@ const BLOB_INITIAL_POSITION = new Vector3(0, 0, -10);
 export const Blob: React.ComponentType = () => {
 
     const blob = useRef<Mesh>(undefined!);
-    const positionVector = useRef<Vector3>(new Vector3());
+    const positionVector = useRef<Vector3>(new Vector3(0, 0, 0));
     const scaleVector = useRef<Vector3>(new Vector3());
-    const mouseVector = useRef<Vector3>(new Vector3());
     const { scrollYProgress } = useViewportScroll();
-
-    useEffect(() => {
-
-        const mouseHandler = (event: MouseEvent): void => {
-
-            const mouseX = event.clientX / window.innerWidth * 2 - 1;
-            const mouseY = event.clientY / window.innerHeight * 2 - 1;
-
-            mouseVector.current.set(mouseX, -mouseY, 0);
-            // BlobMaterial.current.color.setRGB(mouseX, mouseY, mouseX - mouseY);
-
-        };
-
-        window.addEventListener("mousemove", mouseHandler);
-
-        return () => {
-            window.removeEventListener("mousemove", mouseHandler);
-        };
-
-    }, []);
 
     useFrame(({
         clock
@@ -55,11 +31,9 @@ export const Blob: React.ComponentType = () => {
         const spikeSize = Math.sin(scrollYProgress.get() * 2);
 
         scaleVector.current.setScalar(1.4);
-        positionVector.current.setScalar(0);
 
         blob.current.scale.lerp(scaleVector.current, speed);
-        blob.current.position.lerp(positionVector.current, speed);
-        blob.current.position.lerp(mouseVector.current, speed);
+        blob.current.position.lerp(new Vector3(0, 0, 0), speed);
 
         const position = blob.current.geometry.getAttribute("position");
         const positionArray = position.array;
@@ -96,7 +70,6 @@ export const Blob: React.ComponentType = () => {
                 <sphereGeometry args={ [BLOB_SIZE, 128, 128] } />
                 { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
                 <meshPhysicalMaterial color={ [0, -0.1, -1] } />
-
             </mesh>
         </Select>
     );
