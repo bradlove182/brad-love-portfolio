@@ -1,5 +1,5 @@
 
-export interface Route {
+export interface Route{
     name: string;
     path: string;
 }
@@ -10,12 +10,12 @@ export const routes: Route[] = [
         path: "/"
     },
     {
-        name: "Work",
-        path: "/work"
+        name: "About",
+        path: "/#about"
     },
     {
-        name: "About",
-        path: "/about"
+        name: "Projects",
+        path: "/work"
     },
     {
         name: "Contact",

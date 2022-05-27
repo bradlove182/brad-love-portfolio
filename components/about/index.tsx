@@ -28,12 +28,13 @@ const wordVariant: Variants = {
 export const About: React.ComponentType = () => (
     <motion.div
         className={ style.about }
+        id="about"
         onViewportEnter={ dispatchBlobEvent(BlobEvents.LEFT) }
         viewport={ {
             amount: 0.25
         } }
     >
-        <motion.div
+        <motion.h1
             initial={ "initial" }
             variants={ wordVariant }
             viewport={ {
@@ -43,19 +44,19 @@ export const About: React.ComponentType = () => (
             whileInView={ "visible" }
         >
             { "About Me" }
-        </motion.div>
+        </motion.h1>
         <motion.div className={ style.bio }>
             <motion.div
                 className={ style.large }
                 initial={ "initial" }
                 variants={ wordVariant }
                 viewport={ {
-                    amount: "all",
+                    amount: "some",
                     once: true
                 } }
                 whileInView={ "visible" }
             >
-                { "I thrive when working at the edge of creativity and user friendly interfaces." }
+                { "I am born and raised in Cape Town, South Africa." }
             </motion.div>
             <motion.div
                 className={ style.large }
@@ -69,18 +70,18 @@ export const About: React.ComponentType = () => (
             >
                 { "While taking a break from creating and discovering web experiences, I can usually be found playing games or watching football." }
             </motion.div>
-        </motion.div>
-        <motion.div
-            className={ style.blend }
-            initial={ "initial" }
-            variants={ wordVariant }
-            viewport={ {
-                amount: "all",
-                once: true
-            } }
-            whileInView={ "visible" }
-        >
-            { "A blend of UI/UX and development." }
+            <motion.div
+                className={ style.blend }
+                initial={ "initial" }
+                variants={ wordVariant }
+                viewport={ {
+                    amount: "all",
+                    once: true
+                } }
+                whileInView={ "visible" }
+            >
+                { "A blend of UI/UX and modern development." }
+            </motion.div>
         </motion.div>
         <motion.div
             className={ style.glue }

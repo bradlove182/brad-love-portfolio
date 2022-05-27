@@ -69,7 +69,7 @@ export const Blob: React.ComponentType = () => {
                 { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
                 <sphereGeometry args={ [BLOB_SIZE, 128, 128] } />
                 { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
-                <meshPhysicalMaterial color={ [0, -0.1, -1] } />
+                <meshPhysicalMaterial color={ [0.5, -0.1, -0.5] } />
             </mesh>
         </Select>
     );

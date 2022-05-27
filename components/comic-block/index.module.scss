@@ -1,0 +1,28 @@
+
+.block{
+
+    filter: drop-shadow(var(--box-shadow));
+    height: 100%;
+    position: relative;
+    width: 100%;
+
+    .shadow{
+
+        background-color: var(--brutal-black);
+        height: 100%;
+        position: relative;
+        width: 100%;
+
+        .content{
+
+            height: calc(100% - var(--border-size) * 2);
+            left: var(--border-size);
+            position: absolute;
+            top: var(--border-size);
+            width: calc(100% - var(--border-size) * 2);
+
+        }
+
+    }
+
+}

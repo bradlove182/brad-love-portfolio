@@ -1,21 +1,31 @@
 
 .about{
 
-    column-gap: 1.25em;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    mix-blend-mode: difference;
     padding: 6em var(--horizontal-padding);
+    position: relative;
+
+    h1{
+
+        color: var(--color-font-difference);
+        grid-column: 1 / 13;
+        mix-blend-mode: difference;
+
+    }
 
     .bio{
 
-        grid-column: 4 / 13;
+        background-color: var(--foreground);
+        border: var(--border);
+        border-radius: .5em;
+        box-shadow: var(--box-shadow);
+        grid-column: 1 / 13;
+        padding: 2em;
 
     }
 
     .blend{
 
-        grid-column: 4 / 6;
+        grid-column: 1 / 2;
 
     }
 

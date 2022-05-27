@@ -2,6 +2,7 @@
 .container{
 
     align-items: center;
+    color: var(--color-font-difference);
     display: flex;
     flex-flow: column nowrap;
     height: 100vh;
@@ -33,13 +34,7 @@
                 span{
 
                     -webkit-text-fill-color: transparent;
-                    -webkit-text-stroke: 4px var(--color-font);
-
-                }
-
-                &:hover{
-
-                    -webkit-text-fill-color: var(--color-font);
+                    -webkit-text-stroke: 4px var(--color-font-difference);
 
                 }
 
