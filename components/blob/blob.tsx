@@ -1,10 +1,15 @@
 
-import React, { useRef } from "react";
+import React, {
+    useContext,
+    useRef
+} from "react";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 import { useViewportScroll } from "framer-motion";
 import { makeNoise3D } from "fast-simplex-noise";
 import { Select } from "@react-three/postprocessing";
+
+import { ThemeContext } from "../theme";
 
 import type { Mesh } from "three";
 
@@ -20,6 +25,8 @@ export const Blob: React.ComponentType = () => {
     const positionVector = useRef<Vector3>(new Vector3(0, 0, 0));
     const scaleVector = useRef<Vector3>(new Vector3());
     const { scrollYProgress } = useViewportScroll();
+
+    const theme = useContext(ThemeContext);
 
     useFrame(({
         clock
@@ -68,8 +75,7 @@ export const Blob: React.ComponentType = () => {
             <mesh position={ BLOB_INITIAL_POSITION } ref={ blob } scale={ BLOB_INITIAL_SCALE }>
                 { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
                 <sphereGeometry args={ [BLOB_SIZE, 128, 128] } />
-                { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
-                <meshPhysicalMaterial color={ [0.5, -0.1, -0.5] } />
+                <meshPhysicalMaterial color={ theme.blobColor as [r: number, g: number, b: number] } />
             </mesh>
         </Select>
     );

@@ -1,24 +1,21 @@
 
 import React from "react";
 import Head from "next/head";
-import dynamic from "next/dynamic";
 
 import "../styles/globals.scss";
 
+import BlobRender from "../components/blob";
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
+import { ThemeProvider } from "../components/theme";
 
 import type { AppProps } from "next/app";
-
-const BlobRender = dynamic(() => import("../components/blob"), {
-    ssr: false
-});
 
 const MyApp = ({
     Component,
     pageProps
 }: AppProps): React.ReactElement => (
-    <React.Fragment>
+    <ThemeProvider theme="yellow">
         <Head>
             <title>
                 { "Brad Love" }
@@ -30,7 +27,7 @@ const MyApp = ({
         <Navigation />
         <Component { ...pageProps } />
         <Footer />
-    </React.Fragment>
+    </ThemeProvider>
 );
 
 export default MyApp;
