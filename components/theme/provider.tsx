@@ -47,7 +47,7 @@ export const ThemeProvider: React.ComponentType<ThemeProviderProps> = ({
     ]);
 
     const variables = useMemo(() => Object.keys(merged).map(
-        (variable) => `--${ paramCase(variable) }: ${ merged[variable as keyof ThemeView] }`
+        (variable) => `--${ paramCase(variable) }: ${ String(merged[variable as keyof ThemeView]) }`
     ), [merged]);
 
     useEffect(() => {

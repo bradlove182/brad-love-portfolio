@@ -1,10 +1,11 @@
 
 import { yellow } from "./yellow";
+import { green } from "./green";
 
 export interface Theme{
     background: string;
     backgroundContrast: string;
-    blobColor: number[];
+    blobColor: [r: number, g: number, b: number];
     colorBorder: string;
     colorPrimary: string;
     colorSecondary: string;
@@ -16,6 +17,7 @@ export interface Theme{
 export const defaultTheme: Theme = yellow;
 
 export const themes = {
+    green,
     yellow
 };
 

@@ -1,15 +1,14 @@
 
-import React, {
-    useContext,
-    useRef
-} from "react";
+import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Vector3 } from "three";
+import {
+    Color,
+    MeshPhysicalMaterial,
+    Vector3
+} from "three";
 import { useViewportScroll } from "framer-motion";
 import { makeNoise3D } from "fast-simplex-noise";
 import { Select } from "@react-three/postprocessing";
-
-import { ThemeContext } from "../theme";
 
 import type { Mesh } from "three";
 
@@ -19,14 +18,23 @@ const BLOB_SIZE = 2;
 const BLOB_INITIAL_SCALE = new Vector3(0, 0, 0);
 const BLOB_INITIAL_POSITION = new Vector3(0, 0, -10);
 
-export const Blob: React.ComponentType = () => {
+export interface BlobProps{
+    blobColor: [r: number, g: number, b: number];
+}
+
+export const Blob: React.ComponentType<BlobProps> = ({
+    blobColor
+}) => {
 
     const blob = useRef<Mesh>(undefined!);
     const positionVector = useRef<Vector3>(new Vector3(0, 0, 0));
     const scaleVector = useRef<Vector3>(new Vector3());
+    const material = useRef<MeshPhysicalMaterial>(
+        new MeshPhysicalMaterial({
+            color: new Color(blobColor[0], blobColor[1], blobColor[2])
+        })
+    );
     const { scrollYProgress } = useViewportScroll();
-
-    const theme = useContext(ThemeContext);
 
     useFrame(({
         clock
@@ -41,6 +49,7 @@ export const Blob: React.ComponentType = () => {
 
         blob.current.scale.lerp(scaleVector.current, speed);
         blob.current.position.lerp(new Vector3(0, 0, 0), speed);
+        material.current.color.lerp(new Color(blobColor[0], blobColor[1], blobColor[2]), speed);
 
         const position = blob.current.geometry.getAttribute("position");
         const positionArray = position.array;
@@ -72,10 +81,9 @@ export const Blob: React.ComponentType = () => {
 
     return (
         <Select enabled>
-            <mesh position={ BLOB_INITIAL_POSITION } ref={ blob } scale={ BLOB_INITIAL_SCALE }>
+            <mesh material={ material.current } position={ BLOB_INITIAL_POSITION } ref={ blob } scale={ BLOB_INITIAL_SCALE }>
                 { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
                 <sphereGeometry args={ [BLOB_SIZE, 128, 128] } />
-                <meshPhysicalMaterial color={ theme.blobColor as [r: number, g: number, b: number] } />
             </mesh>
         </Select>
     );

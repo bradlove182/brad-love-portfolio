@@ -5,7 +5,7 @@ export const lerp = (
     endValueTo: number
 ): number => startValueTo + value * (endValueTo - startValueTo);
 
-/* eslint-disable no-bitwise, @typescript-eslint/no-magic-numbers -- Faster lookup */
+/* eslint-disable no-bitwise -- Faster lookup */
 export const colourLerp = (
     value: number,
     startColour: string,
@@ -27,4 +27,4 @@ export const colourLerp = (
     return `#${ Math.trunc((1 << 24) + (rr << 16) + (rg << 8) + rb).toString(16).slice(1) }`;
 
 };
-/* eslint-enable no-bitwise, @typescript-eslint/no-magic-numbers */
+/* eslint-enable no-bitwise */
