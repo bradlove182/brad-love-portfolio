@@ -36,22 +36,22 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
 
     useEffect(() => {
 
-        if(auto){
+        const themeKeys = Object.keys(themes) as ThemeKey[];
+        const currentIndex = themeKeys.indexOf(currentTheme);
+        const timer = setInterval(() => {
 
-            const themeKeys = Object.keys(themes) as ThemeKey[];
-            const currentIndex = themeKeys.indexOf(currentTheme);
-            const timer = setInterval(() => {
+            if(auto){
 
                 const nextIndex = currentIndex + 1;
                 onThemeChange(nextIndex >= themeKeys.length ? themeKeys[0] : themeKeys[nextIndex]);
 
-            }, 10_000);
+            }
 
-            return () => {
-                clearInterval(timer);
-            };
+        }, 10_000);
 
-        }
+        return () => {
+            clearInterval(timer);
+        };
 
     }, [currentTheme, auto, onThemeChange]);
 

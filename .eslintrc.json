@@ -3,6 +3,6 @@
   "rules": {
       "@typescript-eslint/no-magic-numbers":"off",
       "id-length":"off",
-      "react/jsx-no-leaked-render": "on"
+      "react/jsx-no-leaked-render": 1
   }
 }
