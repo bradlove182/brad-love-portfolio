@@ -1,8 +1,15 @@
-import React, { useCallback } from "react";
+import React, {
+    useCallback,
+    useEffect,
+    useState
+} from "react";
 
 import { themes } from "../../themes";
 
+import style from "./index.module.scss";
+
 import type { ThemeKey } from "../../themes";
+
 
 export interface ThemePickerProps{
     currentTheme: ThemeKey;
@@ -14,27 +21,65 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
     onThemeChange
 }) => {
 
-    const changeTheme = useCallback((key: ThemeKey) => () => {
-        onThemeChange(key);
+    const [auto, setAuto] = useState<boolean>(false);
+
+    const handleChangeAuto = useCallback(() => {
+
+        setAuto((previous) => !previous);
+
     }, []);
 
+    const changeTheme = useCallback((key: ThemeKey) => () => {
+        onThemeChange(key);
+        setAuto(false);
+    }, []);
+
+    useEffect(() => {
+
+        if(auto){
+
+            const themeKeys = Object.keys(themes) as ThemeKey[];
+            const currentIndex = themeKeys.indexOf(currentTheme);
+            const timer = setInterval(() => {
+
+                const nextIndex = currentIndex + 1;
+                onThemeChange(nextIndex >= themeKeys.length ? themeKeys[0] : themeKeys[nextIndex]);
+
+            }, 10_000);
+
+            return () => {
+                clearInterval(timer);
+            };
+
+        }
+
+    }, [currentTheme, auto, onThemeChange]);
+
     return (
-        <div style={ {
-            position: "relative",
-            zIndex: 1000
-        } }
-        >
+        <div className={ style.theme }>
             {
                 Object.keys(themes).map((key) => (
-                    <div
-                        key={ key } onClick={ changeTheme(key as ThemeKey) } style={ {
-                            color: currentTheme === key ? "red" : "black"
+                    <span
+                        className={ [
+                            currentTheme === key ? style.active : undefined,
+                            style.blob
+                        ].filter(Boolean).join(" ") }
+                        key={ key }
+                        onClick={ changeTheme(key as ThemeKey) } style={ {
+                            backgroundColor: themes[key as ThemeKey].background
                         } }
-                    >
-                        { key }
-                    </div>
+                    />
                 ))
             }
+            <span
+                className={ [
+                    style.text,
+                    auto ? style.auto : undefined
+                ].filter(Boolean).join(" ") }
+                onClick={ handleChangeAuto }
+            >
+                { "AUTO" }
+            </span>
         </div>
     );
 

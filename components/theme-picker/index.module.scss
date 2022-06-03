@@ -1,0 +1,59 @@
+
+.theme{
+
+    align-items: center;
+    background-color: var(--brutal-white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    bottom: var(--vertical-padding);
+    display: flex;
+    flex-flow: row nowrap;
+    gap: .5em;
+    justify-content: center;
+    padding: .25em;
+    position: fixed;
+    right: var(--vertical-padding);
+
+    span{
+
+        &.text{
+
+            font-size: .5em;
+            font-weight: bold;
+            opacity: .5;
+
+            &.auto{
+
+                opacity: 1;
+
+            }
+
+        }
+
+        &.blob{
+
+            border: var(--border);
+            border-color: transparent;
+            border-radius: 1em;
+            height: 1em;
+            order: 1;
+            transition: border-color .2s ease-out;
+            width: 1em;
+
+        }
+
+        &.active{
+
+            border-color: var(--brutal-black);
+
+        }
+
+        &:hover{
+
+            cursor: pointer;
+
+        }
+
+    }
+
+}

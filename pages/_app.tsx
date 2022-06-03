@@ -21,7 +21,7 @@ const MyApp = ({
     pageProps
 }: AppProps): React.ReactElement => {
 
-    const [theme, setTheme] = useState<ThemeKey>("green");
+    const [theme, setTheme] = useState<ThemeKey>("yellow");
 
     const handleThemeChange = useCallback((key: ThemeKey) => {
         setTheme(key);

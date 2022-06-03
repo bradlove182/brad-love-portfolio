@@ -2,15 +2,15 @@
 import type { Theme } from ".";
 
 const theme: Theme = {
-    background: "var(--brutal-green)",
+    background: "var(--brutal-orange)",
     backgroundContrast: "var(--brutal-white)",
-    blobColor: [-0.5, -0.2, 0.2],
+    blobColor: [0.2, -0.3, -0.5],
     colorBorder: "var(--brutal-black)",
     colorFont: "var(--brutal-black)",
-    colorFontContrast: "var(--brutal-green)",
+    colorFontContrast: "var(--brutal-orange)",
     colorPrimary: "var(--brutal-orange)",
     colorSecondary: "var(--brutal-red)",
     foreground: "var(--brutal-white)"
 };
 
-export const green: Pick<Theme, keyof typeof theme> = theme;
+export const orange: Pick<Theme, keyof typeof theme> = theme;

@@ -27,6 +27,7 @@
 
     --border-size: 4px;
     --border: var(--border-size) solid var(--color-border);
+    --border-radius: .5em;
     --box-shadow: .4em .4em 0 var(--color-border);
     --horizontal-padding: 10vw;
     --vertical-padding: 2vh;
@@ -43,7 +44,20 @@ body {
     font-family: "JetBrains Mono", monospace;
     margin: 0;
     padding: 0;
-    transition: background-color .6s ease-out;
+    transition: background-color 1s ease-out;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p{
+
+    transition: color 1s ease-out;
 
 }
 
