@@ -21,7 +21,7 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
     onThemeChange
 }) => {
 
-    const [auto, setAuto] = useState<boolean>(false);
+    const [auto, setAuto] = useState<boolean>(true);
 
     const handleChangeAuto = useCallback(() => {
 

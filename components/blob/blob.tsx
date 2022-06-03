@@ -1,6 +1,6 @@
 
 import React, { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import {
     Color,
     MeshPhysicalMaterial,
@@ -35,6 +35,7 @@ export const Blob: React.ComponentType<BlobProps> = ({
         })
     );
     const { scrollYProgress } = useViewportScroll();
+    const { viewport } = useThree();
 
     useFrame(({
         clock
@@ -44,8 +45,9 @@ export const Blob: React.ComponentType<BlobProps> = ({
         const time = clock.getElapsedTime() * 0.025;
         const numberOfSpikes = Math.cos(1.25 * scrollYProgress.get());
         const spikeSize = Math.sin(scrollYProgress.get() * 2);
+        const scale = viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4;
 
-        scaleVector.current.setScalar(1.4);
+        scaleVector.current.setScalar(scale);
 
         blob.current.scale.lerp(scaleVector.current, speed);
         blob.current.position.lerp(new Vector3(0, 0, 0), speed);

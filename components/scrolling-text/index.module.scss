@@ -24,9 +24,9 @@
 
             .text{
 
-                font-size: 16vw;
+                font-size: calc(var(--vh) + var(--vw) * 16);
                 font-weight: bold;
-                line-height: 16vw;
+                line-height: calc(var(--vh) + var(--vw) * 16);
                 text-transform: uppercase;
                 transition: color 1s ease-out;
                 user-select: none;

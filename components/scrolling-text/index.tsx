@@ -104,7 +104,7 @@ export const ScrollingText: React.ComponentType = () => {
                                 key={ index }
                                 variants={ marqueeVariants }
                             >
-                                { "Devloper" }
+                                { "Developer" }
                                 <span>
                                     {"~"}
                                 </span>
