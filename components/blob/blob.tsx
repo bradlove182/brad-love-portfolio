@@ -1,5 +1,8 @@
 
-import React, { useRef } from "react";
+import React, {
+    useMemo,
+    useRef
+} from "react";
 import {
     useFrame,
     useThree
@@ -32,9 +35,10 @@ export const Blob: React.ComponentType<BlobProps> = ({
     const blob = useRef<Mesh>(undefined!);
     const positionVector = useRef<Vector3>(new Vector3(0, 0, 0));
     const scaleVector = useRef<Vector3>(new Vector3());
+    const color = useMemo<Color>(() => new Color(blobColor[0], blobColor[1], blobColor[2]), blobColor);
     const material = useRef<MeshPhysicalMaterial>(
         new MeshPhysicalMaterial({
-            color: new Color(blobColor[0], blobColor[1], blobColor[2])
+            color
         })
     );
     const { scrollYProgress } = useViewportScroll();
@@ -53,8 +57,8 @@ export const Blob: React.ComponentType<BlobProps> = ({
         scaleVector.current.setScalar(scale);
 
         blob.current.scale.lerp(scaleVector.current, speed);
-        blob.current.position.lerp(new Vector3(0, 0, 0), speed);
-        material.current.color.lerp(new Color(blobColor[0], blobColor[1], blobColor[2]), speed);
+        blob.current.position.lerp(positionVector.current.setScalar(0), speed);
+        material.current.color.lerp(color, speed);
 
         const position = blob.current.geometry.getAttribute("position");
         const positionArray = position.array;
