@@ -12,7 +12,10 @@ import {
     MeshPhysicalMaterial,
     Vector3
 } from "three";
-import { useViewportScroll } from "framer-motion";
+import {
+    useMotionValue,
+    useViewportScroll
+} from "framer-motion";
 import { makeNoise3D } from "fast-simplex-noise";
 import { Select } from "@react-three/postprocessing";
 import { meshBounds } from "@react-three/drei";
@@ -51,6 +54,8 @@ export const Blob: React.ComponentType<BlobProps> = ({
     const { viewport } = useThree();
 
     const scale = useMemo(() => viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4, [viewport]);
+    const numberOfSpikes = useMemo(() => Math.cos(1.25 * scrollYProgress.get()), [scrollYProgress.isAnimating()]);
+    const spikeSize = useMemo(() => Math.sin(scrollYProgress.get() * 2), [scrollYProgress.isAnimating()]);
 
     useFrame(({
         clock
@@ -58,8 +63,6 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
         const speed = delta * 2;
         const time = clock.getElapsedTime() * 0.025;
-        const numberOfSpikes = Math.cos(1.25 * scrollYProgress.get());
-        const spikeSize = Math.sin(scrollYProgress.get() * 2);
 
         scaleVector.current.setScalar(scale);
 
