@@ -17,13 +17,13 @@ import {
     useMotionValue,
     useViewportScroll
 } from "framer-motion";
-import { makeNoise3D } from "fast-simplex-noise";
+// Import { makeNoise3D } from "fast-simplex-noise";
 import { Select } from "@react-three/postprocessing";
 import { meshBounds } from "@react-three/drei";
 
 import type { Mesh } from "three";
 
-const noise = makeNoise3D();
+// Const noise = makeNoise3D();
 
 const BLOB_SIZE = 2;
 const BLOB_INITIAL_SIZE: [
@@ -75,12 +75,10 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
     }, []);
 
-    useFrame(({
-        clock
-    }, delta) => {
+    useFrame((state, delta) => {
 
         const speed = delta * 2;
-        const time = clock.getElapsedTime() * 0.025;
+        // Const time = clock.getElapsedTime() * 0.025;
 
         scaleVector.current.setScalar(scale);
 
@@ -88,8 +86,10 @@ export const Blob: React.ComponentType<BlobProps> = ({
         blob.current.position.lerp(positionVector.current.setScalar(0), speed);
         material.current.color.lerp(color, speed);
 
-        const position = blob.current.geometry.getAttribute("position");
-        const positionArray = position.array;
+        /*
+         * Const position = blob.current.geometry.getAttribute("position");
+         * const positionArray = position.array;
+         */
         const normal = blob.current.geometry.getAttribute("normal");
 
         /*
@@ -113,7 +113,6 @@ export const Blob: React.ComponentType<BlobProps> = ({
          */
 
         blob.current.geometry.computeVertexNormals();
-        position.needsUpdate = true;
         normal.needsUpdate = true;
 
         return undefined;
