@@ -30,7 +30,7 @@ const BLOB_INITIAL_SIZE: [
     radius: number,
     widthSegments: number,
     heightSegments: number
-] = [BLOB_SIZE, 128, 128];
+] = [BLOB_SIZE, 32, 32];
 const BLOB_INITIAL_SCALE = new Vector3(0, 0, 0);
 const BLOB_INITIAL_POSITION = new Vector3(0, 0, -10);
 
@@ -76,6 +76,9 @@ export const Blob: React.ComponentType<BlobProps> = ({
     }, []);
 
     useFrame(({
+        gl,
+        scene,
+        camera,
         clock
     }, delta) => {
 
@@ -86,11 +89,12 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
         blob.current.scale.lerp(scaleVector.current, speed);
         blob.current.position.lerp(positionVector.current.setScalar(0), speed);
+        console.log(material.current.color.equals(color));
         material.current.color.lerp(color, speed);
 
         const position = blob.current.geometry.getAttribute("position");
         const positionArray = position.array;
-        // Const normal = blob.current.geometry.getAttribute("normal");
+        const normal = blob.current.geometry.getAttribute("normal");
 
         // eslint-disable-next-line more/no-c-like-loops -- array is of type ArrayLike so this is easier
         for(let index = 0; index < positionArray.length; index++){
@@ -110,7 +114,9 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
         blob.current.geometry.computeVertexNormals();
         position.needsUpdate = true;
-        // Normal.needsUpdate = true;
+        normal.needsUpdate = true;
+
+        gl.render(scene, camera);
 
         return undefined;
 
