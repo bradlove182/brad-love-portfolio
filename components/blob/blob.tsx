@@ -1,5 +1,6 @@
 
 import React, {
+    useEffect,
     useMemo,
     useRef
 } from "react";
@@ -41,6 +42,8 @@ export const Blob: React.ComponentType<BlobProps> = ({
     blobColor
 }) => {
 
+    const numberOfSpikes = useMotionValue(0);
+    const spikeSize = useMotionValue(0);
     const blob = useRef<Mesh>(undefined!);
     const positionVector = useRef<Vector3>(new Vector3(0, 0, 0));
     const scaleVector = useRef<Vector3>(new Vector3());
@@ -54,8 +57,23 @@ export const Blob: React.ComponentType<BlobProps> = ({
     const { viewport } = useThree();
 
     const scale = useMemo(() => viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4, [viewport]);
-    const numberOfSpikes = useMemo(() => Math.cos(1.25 * scrollYProgress.get()), [scrollYProgress.isAnimating()]);
-    const spikeSize = useMemo(() => Math.sin(scrollYProgress.get() * 2), [scrollYProgress.isAnimating()]);
+
+    useEffect(() => {
+
+        const updateMotionValues = (): void => {
+
+            numberOfSpikes.set(Math.cos(1.25 * scrollYProgress.get()));
+            spikeSize.set(Math.sin(scrollYProgress.get() * 2));
+
+        };
+
+        const unsubscribeScrollYProgress = scrollYProgress.onChange(updateMotionValues);
+
+        return () => {
+            unsubscribeScrollYProgress();
+        };
+
+    }, []);
 
     useFrame(({
         clock
@@ -80,10 +98,10 @@ export const Blob: React.ComponentType<BlobProps> = ({
             positionVector.current.fromBufferAttribute(position, index);
             positionVector.current.normalize();
             positionVector.current.multiplyScalar(
-                BLOB_SIZE + spikeSize * noise(
-                    positionVector.current.x * numberOfSpikes + time,
-                    positionVector.current.y * numberOfSpikes + time,
-                    positionVector.current.z * numberOfSpikes + time
+                BLOB_SIZE + spikeSize.get() * noise(
+                    positionVector.current.x * numberOfSpikes.get() + time,
+                    positionVector.current.y * numberOfSpikes.get() + time,
+                    positionVector.current.z * numberOfSpikes.get() + time
                 )
             );
             position.setXYZ(index, positionVector.current.x, positionVector.current.y, positionVector.current.z);
