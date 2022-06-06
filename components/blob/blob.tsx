@@ -92,21 +92,25 @@ export const Blob: React.ComponentType<BlobProps> = ({
         const positionArray = position.array;
         const normal = blob.current.geometry.getAttribute("normal");
 
-        // eslint-disable-next-line more/no-c-like-loops -- array is of type ArrayLike so this is easier
-        for(let index = 0; index < positionArray.length; index++){
-
-            positionVector.current.fromBufferAttribute(position, index);
-            positionVector.current.normalize();
-            positionVector.current.multiplyScalar(
-                BLOB_SIZE + spikeSize.get() * noise(
-                    positionVector.current.x * numberOfSpikes.get() + time,
-                    positionVector.current.y * numberOfSpikes.get() + time,
-                    positionVector.current.z * numberOfSpikes.get() + time
-                )
-            );
-            position.setXYZ(index, positionVector.current.x, positionVector.current.y, positionVector.current.z);
-
-        }
+        /*
+         *
+         * // eslint-disable-next-line more/no-c-like-loops -- array is of type ArrayLike so this is easier
+         *for(let index = 0; index < positionArray.length; index++){
+         *
+         *    positionVector.current.fromBufferAttribute(position, index);
+         *    positionVector.current.normalize();
+         *    positionVector.current.multiplyScalar(
+         *        BLOB_SIZE + spikeSize.get() * noise(
+         *            positionVector.current.x * numberOfSpikes.get() + time,
+         *            positionVector.current.y * numberOfSpikes.get() + time,
+         *            positionVector.current.z * numberOfSpikes.get() + time
+         *        )
+         *    );
+         *    position.setXYZ(index, positionVector.current.x, positionVector.current.y, positionVector.current.z);
+         *
+         *}
+         *
+         */
 
         blob.current.geometry.computeVertexNormals();
         position.needsUpdate = true;
