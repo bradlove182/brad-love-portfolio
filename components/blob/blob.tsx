@@ -15,12 +15,18 @@ import {
 import { useViewportScroll } from "framer-motion";
 import { makeNoise3D } from "fast-simplex-noise";
 import { Select } from "@react-three/postprocessing";
+import { meshBounds } from "@react-three/drei";
 
 import type { Mesh } from "three";
 
 const noise = makeNoise3D();
 
 const BLOB_SIZE = 2;
+const BLOB_INITIAL_SIZE: [
+    radius: number,
+    widthSegments: number,
+    heightSegments: number
+] = [BLOB_SIZE, 128, 128];
 const BLOB_INITIAL_SCALE = new Vector3(0, 0, 0);
 const BLOB_INITIAL_POSITION = new Vector3(0, 0, -10);
 
@@ -44,6 +50,8 @@ export const Blob: React.ComponentType<BlobProps> = ({
     const { scrollYProgress } = useViewportScroll();
     const { viewport } = useThree();
 
+    const scale = useMemo(() => viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4, [viewport]);
+
     useFrame(({
         clock
     }, delta) => {
@@ -52,7 +60,6 @@ export const Blob: React.ComponentType<BlobProps> = ({
         const time = clock.getElapsedTime() * 0.025;
         const numberOfSpikes = Math.cos(1.25 * scrollYProgress.get());
         const spikeSize = Math.sin(scrollYProgress.get() * 2);
-        const scale = viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4;
 
         scaleVector.current.setScalar(scale);
 
@@ -90,9 +97,8 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
     return (
         <Select enabled>
-            <mesh material={ material.current } position={ BLOB_INITIAL_POSITION } ref={ blob } scale={ BLOB_INITIAL_SCALE }>
-                { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
-                <sphereGeometry args={ [BLOB_SIZE, 64, 64] } />
+            <mesh material={ material.current } position={ BLOB_INITIAL_POSITION } raycast={ meshBounds } ref={ blob } scale={ BLOB_INITIAL_SCALE }>
+                <sphereGeometry args={ BLOB_INITIAL_SIZE } />
             </mesh>
         </Select>
     );
