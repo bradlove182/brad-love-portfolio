@@ -17,13 +17,13 @@ import {
     useMotionValue,
     useViewportScroll
 } from "framer-motion";
-// Import { makeNoise3D } from "fast-simplex-noise";
+import { makeNoise3D } from "fast-simplex-noise";
 import { Select } from "@react-three/postprocessing";
 import { meshBounds } from "@react-three/drei";
 
 import type { Mesh } from "three";
 
-// Const noise = makeNoise3D();
+const noise = makeNoise3D();
 
 const BLOB_SIZE = 2;
 const BLOB_INITIAL_SIZE: [
@@ -75,10 +75,12 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
     }, []);
 
-    useFrame((state, delta) => {
+    useFrame(({
+        clock
+    }, delta) => {
 
         const speed = delta * 2;
-        // Const time = clock.getElapsedTime() * 0.025;
+        const time = clock.getElapsedTime() * 0.025;
 
         scaleVector.current.setScalar(scale);
 
@@ -86,34 +88,29 @@ export const Blob: React.ComponentType<BlobProps> = ({
         blob.current.position.lerp(positionVector.current.setScalar(0), speed);
         material.current.color.lerp(color, speed);
 
-        /*
-         * Const position = blob.current.geometry.getAttribute("position");
-         * const positionArray = position.array;
-         */
-        const normal = blob.current.geometry.getAttribute("normal");
+        const position = blob.current.geometry.getAttribute("position");
+        const positionArray = position.array;
+        // Const normal = blob.current.geometry.getAttribute("normal");
 
-        /*
-         *
-         * // eslint-disable-next-line more/no-c-like-loops -- array is of type ArrayLike so this is easier
-         *for(let index = 0; index < positionArray.length; index++){
-         *
-         *    positionVector.current.fromBufferAttribute(position, index);
-         *    positionVector.current.normalize();
-         *    positionVector.current.multiplyScalar(
-         *        BLOB_SIZE + spikeSize.get() * noise(
-         *            positionVector.current.x * numberOfSpikes.get() + time,
-         *            positionVector.current.y * numberOfSpikes.get() + time,
-         *            positionVector.current.z * numberOfSpikes.get() + time
-         *        )
-         *    );
-         *    position.setXYZ(index, positionVector.current.x, positionVector.current.y, positionVector.current.z);
-         *
-         *}
-         *
-         */
+        // eslint-disable-next-line more/no-c-like-loops -- array is of type ArrayLike so this is easier
+        for(let index = 0; index < positionArray.length; index++){
+
+            positionVector.current.fromBufferAttribute(position, index);
+            positionVector.current.normalize();
+            positionVector.current.multiplyScalar(
+                BLOB_SIZE + spikeSize.get() * noise(
+                    positionVector.current.x * numberOfSpikes.get() + time,
+                    positionVector.current.y * numberOfSpikes.get() + time,
+                    positionVector.current.z * numberOfSpikes.get() + time
+                )
+            );
+            position.setXYZ(index, positionVector.current.x, positionVector.current.y, positionVector.current.z);
+
+        }
 
         blob.current.geometry.computeVertexNormals();
-        normal.needsUpdate = true;
+        position.needsUpdate = true;
+        // Normal.needsUpdate = true;
 
         return undefined;
 
