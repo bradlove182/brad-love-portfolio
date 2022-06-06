@@ -4,6 +4,7 @@ import React, {
 } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Selection } from "@react-three/postprocessing";
+import { AdaptiveDpr } from "@react-three/drei";
 
 import { ThemeContext } from "../theme";
 
@@ -31,6 +32,7 @@ export const BlobRender: React.ComponentType<BlobRenderProps> = ({
     return (
         <div className={ style.canvas }>
             <Canvas>
+                <AdaptiveDpr pixelated />
                 <Lights />
                 <Selection>
                     <Blob blobColor={ theme.blobColor } />

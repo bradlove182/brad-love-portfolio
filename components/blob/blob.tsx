@@ -92,7 +92,7 @@ export const Blob: React.ComponentType<BlobProps> = ({
         <Select enabled>
             <mesh material={ material.current } position={ BLOB_INITIAL_POSITION } ref={ blob } scale={ BLOB_INITIAL_SCALE }>
                 { /* eslint-disable-next-line react-perf/jsx-no-new-array-as-prop -- Easier */ }
-                <sphereGeometry args={ [BLOB_SIZE, 128, 128] } />
+                <sphereGeometry args={ [BLOB_SIZE, 64, 64] } />
             </mesh>
         </Select>
     );
