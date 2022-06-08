@@ -7,47 +7,15 @@
     h1{
 
         color: var(--color-font-contrast);
-        grid-column: 1 / 13;
         mix-blend-mode: difference;
 
     }
 
-    .bio{
+    .cards{
 
-        background-color: var(--foreground);
-        border: var(--border);
-        border-radius: .5em;
-        box-shadow: var(--box-shadow);
-        grid-column: 1 / 13;
-        padding: 2em;
-
-    }
-
-    .blend{
-
-        grid-column: 1 / 2;
-
-    }
-
-    .glue{
-
-        grid-column: 7 / 11;
-
-    }
-
-    .employed{
-
-        grid-column: 7 / 11;
-        margin-top: 3em;
-
-    }
-
-    .large{
-
-        font-size: 1.5em;
-        font-weight: bold;
-        margin-bottom: 3em;
-        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
 
     }
 

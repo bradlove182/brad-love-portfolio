@@ -11,6 +11,7 @@ const topWord: Variants = {
     },
     show: {
         transition: {
+            delayChildren: 0.5,
             staggerChildren: 0.1,
             x: {
                 duration: 30,
@@ -29,6 +30,7 @@ const bottomWord: Variants = {
     },
     show: {
         transition: {
+            delayChildren: 0.5,
             staggerChildren: 0.1,
             x: {
                 duration: 30,
