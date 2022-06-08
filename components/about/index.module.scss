@@ -13,9 +13,9 @@
 
     .cards{
 
-        display: flex;
-        flex-direction: row;
+        display: grid;
         gap: 2em;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 
     }
 

@@ -47,19 +47,25 @@ export const About: React.ComponentType = () => (
             whileInView={ "show" }
         >
             <AboutCard title="Location" variants={ card }>
-                { "I am born and raised in Cape Town, South Africa." }
-                <br />
-                <br />
-                { "Currently at News Team." }
+                <p>
+                    { "I am born and raised in Cape Town, South Africa." }
+                </p>
+                <p>
+                    { "Currently at News Team." }
+                </p>
             </AboutCard>
             <AboutCard title="Hobbies" variants={ card }>
-                { "While taking a break from creating and discovering web experiences, I can usually be found playing games or watching football." }
+                <p>
+                    { "While taking a break from creating and discovering web experiences, I can usually be found playing games or watching football." }
+                </p>
             </AboutCard>
             <AboutCard title="Background" variants={ card }>
-                { "A blend of UI/UX and modern development." }
-                <br />
-                <br />
-                { "A background in both design and development, allows me to be very sensitive to visual details, animation or typography." }
+                <p>
+                    { "A blend of UI/UX and modern development." }
+                </p>
+                <p>
+                    { "A background in both design and development, allows me to be very sensitive to visual details, animation and typography." }
+                </p>
             </AboutCard>
         </motion.div>
     </motion.div>

@@ -3,13 +3,39 @@ import React, {
     useEffect,
     useState
 } from "react";
+import { motion } from "framer-motion";
 
 import { themes } from "../../themes";
 
 import style from "./index.module.scss";
 
 import type { ThemeKey } from "../../themes";
+import type { Variants } from "framer-motion";
 
+const container: Variants = {
+    hidden: {
+        y: "200%"
+    },
+    show: {
+        transition: {
+            delay: 1.5,
+            delayChildren: 1.75,
+            staggerChildren: 0.1
+        },
+        y: "0%"
+    }
+};
+
+const child: Variants = {
+    hidden: {
+        opacity: 0,
+        y: "100%"
+    },
+    show: {
+        opacity: 1,
+        y: "0%"
+    }
+};
 
 export interface ThemePickerProps{
     currentTheme: ThemeKey;
@@ -56,10 +82,25 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
     }, [currentTheme, auto, onThemeChange]);
 
     return (
-        <div className={ style.theme }>
+        <motion.div
+            animate={ "show" }
+            className={ style.theme }
+            initial={ "hidden" }
+            variants={ container }
+        >
+            <motion.span
+                className={ [
+                    style.text,
+                    auto ? style.auto : undefined
+                ].filter(Boolean).join(" ") }
+                onClick={ handleChangeAuto }
+                variants={ child }
+            >
+                { "AUTO" }
+            </motion.span>
             {
                 Object.keys(themes).map((key) => (
-                    <span
+                    <motion.span
                         className={ [
                             currentTheme === key ? style.active : undefined,
                             style.blob
@@ -68,19 +109,11 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
                         onClick={ changeTheme(key as ThemeKey) } style={ {
                             backgroundColor: themes[key as ThemeKey].background
                         } }
+                        variants={ child }
                     />
                 ))
             }
-            <span
-                className={ [
-                    style.text,
-                    auto ? style.auto : undefined
-                ].filter(Boolean).join(" ") }
-                onClick={ handleChangeAuto }
-            >
-                { "AUTO" }
-            </span>
-        </div>
+        </motion.div>
     );
 
 };
