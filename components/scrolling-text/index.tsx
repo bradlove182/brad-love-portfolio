@@ -1,118 +1,18 @@
 
-import React, { useMemo } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 
-import {
-    BlobEvents,
-    dispatchBlobEvent
-} from "../blob/events";
-
+import { ScrollingTextWord } from "./word";
 import style from "./index.module.scss";
 
-import type { Variants } from "framer-motion";
-
-export const ScrollingText: React.ComponentType = () => {
-
-    const marqueeVariants: Variants = useMemo(() => ({
-        left: {
-            perspective: ["0cm", "5cm"],
-            transition: {
-                x: {
-                    duration: 30,
-                    ease: "linear",
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop"
-                }
-            },
-            x: ["0%", "-100%"]
-        },
-        right: {
-            transition: {
-                x: {
-                    duration: 30,
-                    ease: "linear",
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop"
-                }
-            },
-            x: ["-100%", "0%"]
-        }
-    }), []);
-
-    return (
-        <motion.div
-            className={ style.container }
-            onViewportEnter={ dispatchBlobEvent(BlobEvents.CENTER) }
-            viewport={ {
-                amount: 0.75
-            } }
-        >
-            <div
-                className={ style.marquee }
-            >
-                <motion.div
-                    className={ style.track }
-                    style={ {
-                        opacity: 0
-                    } }
-                    viewport={ { once: true } }
-                    whileInView={ {
-                        opacity: [0, 1],
-                        transition: {
-                            delay: 1.5,
-                            duration: 2,
-                            ease: "easeOut"
-                        }
-                    } }
-                >
-                    {
-                        Array.from({ length: 3 }, (value, index) => (
-                            <motion.div
-                                animate="left"
-                                className={ style.text }
-                                key={ index }
-                                variants={ marqueeVariants }
-                            >
-                                { "Creative" }
-                                <span>
-                                    {"~"}
-                                </span>
-                            </motion.div>
-                        ))
-                    }
-                </motion.div>
-                <motion.div
-                    className={ style.track }
-                    style={ {
-                        opacity: 0
-                    } }
-                    viewport={ { once: true } }
-                    whileInView={ {
-                        opacity: [0, 1],
-                        transition: {
-                            delay: 2,
-                            duration: 2,
-                            ease: "easeOut"
-                        }
-                    } }
-                >
-                    {
-                        Array.from({ length: 3 }, (value, index) => (
-                            <motion.div
-                                animate="right"
-                                className={ style.text }
-                                key={ index }
-                                variants={ marqueeVariants }
-                            >
-                                { "Developer" }
-                                <span>
-                                    {"~"}
-                                </span>
-                            </motion.div>
-                        ))
-                    }
-                </motion.div>
+export const ScrollingText: React.ComponentType = () => (
+    <div className={ style.container }>
+        <div className={ style.marquee }>
+            <div className={ style.track }>
+                <ScrollingTextWord word="Creative" />
             </div>
-        </motion.div>
-    );
-};
+            <div className={ style.track }>
+                <ScrollingTextWord reverseDelimeter word="Developer" />
+            </div>
+        </div>
+    </div>
+);

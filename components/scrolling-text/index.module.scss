@@ -22,25 +22,6 @@
             flex-flow: row nowrap;
             width: 100%;
 
-            .text{
-
-                font-size: calc(var(--vh) + var(--vw) * 16);
-                font-weight: bold;
-                line-height: calc(var(--vh) + var(--vw) * 16);
-                text-transform: uppercase;
-                transition: color 1s ease-out;
-                user-select: none;
-                white-space: nowrap;
-
-                span{
-
-                    -webkit-text-fill-color: transparent;
-                    -webkit-text-stroke: 4px var(--color-font-contrast);
-
-                }
-
-            }
-
         }
 
     }

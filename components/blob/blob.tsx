@@ -1,5 +1,6 @@
 
 import React, {
+    useEffect,
     useMemo,
     useRef
 } from "react";
@@ -48,16 +49,28 @@ export const Blob: React.ComponentType<BlobProps> = ({
         })
     );
     const { scrollYProgress } = useViewportScroll();
-    const { viewport } = useThree();
+    const {
+        viewport,
+        clock
+    } = useThree();
 
     const scale = useMemo(() => viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4, [viewport]);
 
-    useFrame(({
-        clock
-    }, delta) => {
+    useEffect(() => {
+
+        if(document.visibilityState !== "visible" && clock.running){
+            clock.stop();
+            return;
+        }
+
+        clock.start();
+
+    }, [document.visibilityState]);
+
+    useFrame((state, delta) => {
 
         const speed = delta * 2;
-        const time = clock.getElapsedTime() * 0.025;
+        const time = state.clock.getElapsedTime() * 0.025;
         const numberOfSpikes = Math.cos(1.25 * scrollYProgress.get());
         const spikeSize = Math.sin(scrollYProgress.get() * 2);
 

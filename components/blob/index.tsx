@@ -1,6 +1,6 @@
 import React, {
-    useContext,
-    useEffect
+    Suspense,
+    useContext
 } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Selection } from "@react-three/postprocessing";
@@ -17,36 +17,27 @@ import { Effects } from "./effects";
 import { Lights } from "./lights";
 import style from "./index.module.scss";
 
-export interface BlobRenderProps{
-    blobLoaded: (state: boolean) => void;
-}
-
-export const BlobRender: React.ComponentType<BlobRenderProps> = ({
-    blobLoaded
-}) => {
+export const BlobRender: React.ComponentType = () => {
 
     const theme = useContext(ThemeContext);
-
-    useEffect(() => {
-
-        blobLoaded(true);
-
-    }, [blobLoaded]);
 
     return (
         <div className={ style.canvas }>
             <Canvas>
-                <Preload />
-                <AdaptiveDpr />
-                <AdaptiveEvents />
-                <Lights />
-                <Selection>
-                    <Blob blobColor={ theme.blobColor } />
-                    <Effects />
-                </Selection>
+                <Suspense>
+                    <Preload />
+                    <AdaptiveDpr />
+                    <AdaptiveEvents />
+                    <Lights />
+                    <Selection>
+                        <Blob blobColor={ theme.blobColor } />
+                        <Effects />
+                    </Selection>
+                </Suspense>
             </Canvas>
         </div>
     );
 
 };
 
+export default BlobRender;
