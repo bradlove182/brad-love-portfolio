@@ -2,10 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import {
-    BlobEvents,
-    dispatchBlobEvent
-} from "../blob/events";
+import { SectionTitle } from "../section-title";
 
 import style from "./index.module.scss";
 
@@ -29,22 +26,8 @@ export const About: React.ComponentType = () => (
     <motion.div
         className={ style.about }
         id="about"
-        onViewportEnter={ dispatchBlobEvent(BlobEvents.LEFT) }
-        viewport={ {
-            amount: 0.25
-        } }
     >
-        <motion.h1
-            initial={ "initial" }
-            variants={ wordVariant }
-            viewport={ {
-                amount: "some",
-                once: true
-            } }
-            whileInView={ "visible" }
-        >
-            { "About Me" }
-        </motion.h1>
+        <SectionTitle text="About Me" />
         <motion.div className={ style.bio }>
             <motion.div
                 className={ style.large }

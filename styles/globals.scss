@@ -25,6 +25,7 @@
 
     // Static theme properties
 
+    --background: var(--brutal-yellow);
     --border-size: 4px;
     --border: var(--border-size) solid var(--color-border);
     --border-radius: .5em;
@@ -32,7 +33,6 @@
     --horizontal-padding: 10vw;
     --vertical-padding: 2vh;
     --padding: var(--vertical-padding) var(--horizontal-padding);
-    background-color: var(--brutal-yellow);
     font-size: 20px;
 
 }

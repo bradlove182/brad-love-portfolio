@@ -6,10 +6,10 @@
     font-size: calc(var(--vh) + var(--vw) * 16);
     font-weight: bold;
     line-height: calc(var(--vh) + var(--vw) * 16);
+    overflow: hidden;
     text-transform: uppercase;
     transition: color 1s ease-out;
     user-select: none;
-    white-space: nowrap;
 
     .delimeter{
 
@@ -18,20 +18,9 @@
 
     }
 
-    .letter,
-    .delimeter{
+    .letter{
 
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-
-        span{
-
-            display: block;
-            position: relative;
-
-        }
+        position: relative;
 
     }
 
