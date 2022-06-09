@@ -46,25 +46,30 @@ export const About: React.ComponentType = () => (
             viewport={ { once: true } }
             whileInView={ "show" }
         >
+            <AboutCard title="Expertise" variants={ card }>
+                <p>
+                    { "I specialise in a perfect blend of user interfaces and modern development." }
+                </p>
+                <p>
+                    { "With a background in both digital design and development I am capable of creating a harmonious relationship between both worlds." }
+                </p>
+            </AboutCard>
             <AboutCard title="Location" variants={ card }>
                 <p>
-                    { "I am born and raised in Cape Town, South Africa." }
+                    { "I am based in Cape Town, South Africa where I was born and raised." }
                 </p>
                 <p>
-                    { "Currently working as a Front-End Engineer at News Team." }
+                    { "Currently under employment as a Front-End Engineer at " }
+                    <a href="https://newsteam.io" rel="noreferrer" target="_blank">
+                        {"News Team"}
+                    </a>
+                    {"."}
                 </p>
             </AboutCard>
-            <AboutCard title="Hobbies" variants={ card }>
+            <AboutCard title="After Hours" variants={ card }>
                 <p>
-                    { "While taking a break from creating and discovering web experiences, I can usually be found playing games or watching football." }
-                </p>
-            </AboutCard>
-            <AboutCard title="Background" variants={ card }>
-                <p>
-                    { "A blend of UI/UX and modern development." }
-                </p>
-                <p>
-                    { "A background in both design and development, allows me to be very sensitive to visual details, animation and typography." }
+                    { "While taking a break from creating and discovering web experiences, " }
+                    { "I can usually be found playing games, watching football and spending quality time with my family." }
                 </p>
             </AboutCard>
         </motion.div>
