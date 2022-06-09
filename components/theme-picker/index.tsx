@@ -14,7 +14,8 @@ import type { Variants } from "framer-motion";
 
 const container: Variants = {
     hidden: {
-        y: "200%"
+        x: "50%",
+        y: "-200%"
     },
     show: {
         transition: {
@@ -28,11 +29,9 @@ const container: Variants = {
 
 const child: Variants = {
     hidden: {
-        opacity: 0,
-        y: "100%"
+        y: "200%"
     },
     show: {
-        opacity: 1,
         y: "0%"
     }
 };

@@ -11,6 +11,7 @@ import "../styles/globals.scss";
 
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
+import { SiteTitle } from "../components/site-title";
 import { ThemeProvider } from "../components/theme";
 import { ThemePicker } from "../components/theme-picker";
 
@@ -42,12 +43,13 @@ const MyApp = ({
             <Suspense>
                 <BlobRender />
             </Suspense>
+            <SiteTitle />
             <Navigation />
-            <Component { ...pageProps } />
-            <Footer />
             <ThemePicker
                 currentTheme={ theme } onThemeChange={ handleThemeChange }
             />
+            <Component { ...pageProps } />
+            <Footer />
         </ThemeProvider>
     );
 

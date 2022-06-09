@@ -1,0 +1,13 @@
+
+.title{
+
+    color: var(--color-font-contrast);
+    font-size: 1em;
+    font-weight: bold;
+    left: var(--horizontal-padding);
+    mix-blend-mode: difference;
+    position: fixed;
+    top: var(--vertical-padding);
+    z-index: 1;
+
+}

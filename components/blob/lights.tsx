@@ -4,7 +4,7 @@ import React from "react";
 import type { Vector3 } from "@react-three/fiber";
 
 const POINT_LIGHT: Vector3 = [0, 0, 100];
-const DIRECTION_LIGHT: Vector3 = [1, 1, 1];
+const DIRECTION_LIGHT: Vector3 = [-1, 1, 1];
 
 export const Lights: React.ComponentType = () => (
     <React.Fragment>
