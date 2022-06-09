@@ -1,8 +1,10 @@
 import React, {
     useCallback,
+    useEffect,
     useState
 } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 import { NavigationMenu } from "./menu";
 import style from "./index.module.scss";
@@ -59,7 +61,6 @@ const menu: Variants = {
     close: {
         display: "block",
         opacity: 1,
-        transformOrigin: "center",
         y: "0%"
     },
     open: {
@@ -82,6 +83,7 @@ export const Navigation: React.ComponentType<NavigationProps> = ({
 }) => {
 
     const [showMenu, setShowMenu] = useState<boolean>(false);
+    const router = useRouter();
 
     const handleShowMenu = useCallback(() => {
 
@@ -89,23 +91,39 @@ export const Navigation: React.ComponentType<NavigationProps> = ({
 
     }, []);
 
+    useEffect(() => {
+
+        const hideMenu = (): void => {
+            setShowMenu(false);
+        };
+
+        router.events.on("hashChangeStart", hideMenu);
+
+        return () => {
+            router.events.off("hashChangeStart", hideMenu);
+        };
+
+    }, []);
+
     return (
-        <motion.div className={ style.navigation } onClick={ handleShowMenu }>
-            <svg
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="4"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ topLine } />
-                <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ middleLine } />
-                <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ bottomLine } />
-            </svg>
+        <motion.div className={ style.navigation }>
+            <div className={ style.button } onClick={ handleShowMenu }>
+                <svg
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="4"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ topLine } />
+                    <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ middleLine } />
+                    <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ bottomLine } />
+                </svg>
+            </div>
             <motion.div
                 animate={ showMenu ? "close" : "open" }
                 className={ style.wrapper }

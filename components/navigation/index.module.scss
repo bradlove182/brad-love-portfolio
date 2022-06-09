@@ -1,18 +1,9 @@
 
 .navigation{
 
-    align-items: center;
-    background-color: var(--brutal-white);
-    border: var(--border);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    display: flex;
-    height: 48px;
-    justify-content: center;
     position: fixed;
     right: var(--horizontal-padding);
     top: var(--vertical-padding);
-    width: 48px;
     z-index: 1;
 
     &:hover{
@@ -21,12 +12,26 @@
 
     }
 
+    .button{
+
+        align-items: center;
+        background-color: var(--brutal-white);
+        border: var(--border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        display: flex;
+        height: 48px;
+        justify-content: center;
+        width: 48px;
+        z-index: 2;
+
+    }
+
     .wrapper{
 
         position: absolute;
         right: 0;
-        text-align: right;
-        top: 0;
+        top: 3em;
 
     }
 

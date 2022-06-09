@@ -51,7 +51,7 @@ export const About: React.ComponentType = () => (
                     { "I am born and raised in Cape Town, South Africa." }
                 </p>
                 <p>
-                    { "Currently at News Team." }
+                    { "Currently working as a Front-End Engineer at News Team." }
                 </p>
             </AboutCard>
             <AboutCard title="Hobbies" variants={ card }>
