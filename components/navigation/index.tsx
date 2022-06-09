@@ -2,14 +2,13 @@ import React, {
     useCallback,
     useState
 } from "react";
-import {
-    motion,
-    useAnimation
-} from "framer-motion";
+import { motion } from "framer-motion";
 
+import { NavigationMenu } from "./menu";
 import style from "./index.module.scss";
 
 import type { Variants } from "framer-motion";
+import type { ThemeKey } from "../../themes";
 
 const topLine: Variants = {
     close: {
@@ -56,28 +55,37 @@ const bottomLine: Variants = {
     }
 };
 
-export const Navigation: React.ComponentType = () => {
+const menu: Variants = {
+    close: {
+        display: "block",
+        opacity: 1,
+        transformOrigin: "center",
+        y: "0%"
+    },
+    open: {
+        opacity: 0,
+        transitionEnd: {
+            display: "none"
+        },
+        y: "-5%"
+    }
+};
 
-    const controls = useAnimation();
+export interface NavigationProps{
+    theme: ThemeKey;
+    onThemeChange: (key: ThemeKey) => void;
+}
+
+export const Navigation: React.ComponentType<NavigationProps> = ({
+    theme,
+    onThemeChange
+}) => {
+
     const [showMenu, setShowMenu] = useState<boolean>(false);
 
     const handleShowMenu = useCallback(() => {
 
-        setShowMenu((previous) => {
-
-            if(previous){
-
-                void controls.start("open");
-
-            }else{
-
-                void controls.start("close");
-
-            }
-
-            return !previous;
-
-        });
+        setShowMenu((previous) => !previous);
 
     }, []);
 
@@ -94,13 +102,18 @@ export const Navigation: React.ComponentType = () => {
                 width="24"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <motion.line animate={ controls } initial={ "open" } variants={ topLine } />
-                <motion.line animate={ controls } initial={ "open" } variants={ middleLine } />
-                <motion.line animate={ controls } initial={ "open" } variants={ bottomLine } />
+                <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ topLine } />
+                <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ middleLine } />
+                <motion.line animate={ showMenu ? "close" : "open" } initial={ "open" } variants={ bottomLine } />
             </svg>
-            {
-                showMenu ? "Menu" : undefined
-            }
+            <motion.div
+                animate={ showMenu ? "close" : "open" }
+                className={ style.wrapper }
+                initial={ "open" }
+                variants={ menu }
+            >
+                <NavigationMenu onThemeChange={ onThemeChange } theme={ theme } />
+            </motion.div>
         </motion.div>
     );
 

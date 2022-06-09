@@ -13,17 +13,11 @@ import type { ThemeKey } from "../../themes";
 import type { Variants } from "framer-motion";
 
 const container: Variants = {
-    hidden: {
-        x: "50%",
-        y: "-200%"
-    },
+    hidden: {},
     show: {
         transition: {
-            delay: 1.5,
-            delayChildren: 1.75,
             staggerChildren: 0.1
-        },
-        y: "0%"
+        }
     }
 };
 
@@ -82,10 +76,10 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
 
     return (
         <motion.div
-            animate={ "show" }
             className={ style.theme }
             initial={ "hidden" }
             variants={ container }
+            whileInView={ "show" }
         >
             <motion.span
                 className={ [

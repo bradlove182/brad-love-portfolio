@@ -13,7 +13,6 @@ import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
 import { SiteTitle } from "../components/site-title";
 import { ThemeProvider } from "../components/theme";
-import { ThemePicker } from "../components/theme-picker";
 
 import type { ThemeKey } from "../themes";
 import type { AppProps } from "next/app";
@@ -44,10 +43,7 @@ const MyApp = ({
                 <BlobRender />
             </Suspense>
             <SiteTitle />
-            <Navigation />
-            <ThemePicker
-                currentTheme={ theme } onThemeChange={ handleThemeChange }
-            />
+            <Navigation onThemeChange={ handleThemeChange } theme={ theme } />
             <Component { ...pageProps } />
             <Footer />
         </ThemeProvider>

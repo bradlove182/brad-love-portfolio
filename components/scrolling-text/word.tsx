@@ -72,11 +72,12 @@ export const ScrollingTextWord: React.ComponentType<ScrollingTextWordProps> = ({
 }) => (
     <React.Fragment>
         {
-            Array.from({ length: 3 }, () => (
+            Array.from({ length: 3 }, (value, index) => (
                 <motion.div
                     animate={ "show" }
                     className={ style.word }
                     initial={ "hidden" }
+                    key={ index }
                     variants={ reverseDelimeter ? bottomWord : topWord }
                 >
                     {

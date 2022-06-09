@@ -5,23 +5,13 @@
     background-color: var(--brutal-white);
     border: var(--border);
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
     display: flex;
     flex-flow: row nowrap;
     gap: .5em;
     justify-content: center;
     overflow: hidden;
     padding: .25em;
-    position: fixed;
-    right: 50%;
-    top: var(--vertical-padding);
-    z-index: 1;
-
-    @media only screen and (max-width: 600px) {
-
-        flex-flow: column nowrap;
-
-    }
+    position: relative;
 
     span{
 
