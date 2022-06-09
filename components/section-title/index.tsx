@@ -37,9 +37,7 @@ export const SectionTitle: React.ComponentType<SectionTitleProps> = ({
         className={ style.title }
         initial={ "hidden" }
         variants={ heading }
-        viewport={ {
-            once: true
-        } }
+        viewport={ { once: true } }
         whileInView={ "show" }
     >
         {

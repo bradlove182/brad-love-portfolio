@@ -76,7 +76,7 @@ export const ScrollingTextWord: React.ComponentType<ScrollingTextWordProps> = ({
                 <motion.div
                     animate={ "show" }
                     className={ style.word }
-                    initial={ "hidden" }
+                    initial={ "show" }
                     key={ index }
                     variants={ reverseDelimeter ? bottomWord : topWord }
                 >
