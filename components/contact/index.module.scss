@@ -1,34 +1,7 @@
 
 .contact{
 
-    column-gap: 1.25em;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    mix-blend-mode: difference;
     padding: 6em var(--horizontal-padding);
-
-    .work{
-
-        grid-column: 4 / 6;
-
-    }
-
-    .message{
-
-        grid-column: 7 / 11;
-
-    }
-
-    .email{
-
-        font-size: 10vw;
-        font-weight: bold;
-        grid-column: 1 / 13;
-        line-height: 10vw;
-        margin-top: 1em;
-        text-transform: uppercase;
-        word-wrap: break-word;
-
-    }
+    position: relative;
 
 }

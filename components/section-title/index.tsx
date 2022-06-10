@@ -36,6 +36,7 @@ export const SectionTitle: React.ComponentType<SectionTitleProps> = ({
     <motion.h1
         className={ style.title }
         initial={ "hidden" }
+        title={ text }
         variants={ heading }
         viewport={ { once: true } }
         whileInView={ "show" }

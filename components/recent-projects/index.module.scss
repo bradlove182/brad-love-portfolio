@@ -1,22 +1,7 @@
 
 .recent{
 
-    column-gap: 1.25em;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    mix-blend-mode: difference;
     padding: 6em var(--horizontal-padding);
-
-    .projects{
-
-        grid-column: 4 / 6;
-
-    }
-
-    .creative{
-
-        grid-column: 7 / 11;
-
-    }
+    position: relative;
 
 }

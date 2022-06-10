@@ -2,11 +2,11 @@
 .button {
 
     appearance: none;
-    background-color: #4078c0;
-    border: 4px solid #000;
-    border-radius: .25em;
-    box-shadow: .2em .2em 0 #000;
-    color: #000;
+    background-color: var(--brutal-yellow);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--color-font);
     cursor: pointer;
     display: inline-block;
     font-family: sans-serif;
@@ -19,22 +19,9 @@
     text-decoration: none;
     text-transform: uppercase;
     transition:
-        background-color 250ms ease-in-out,
+        background-color 1s ease-out,
         transform 150ms ease;
-
-    &:hover,
-    &:focus {
-
-        background-blend-mode: difference;
-
-    }
-
-    &:focus {
-
-        outline: 2px solid #fff;
-        outline-offset: 4px;
-
-    }
+    width: fit-content;
 
     &:active{
 
