@@ -5,13 +5,13 @@ import style from "./index.module.scss";
 
 export interface ButtonProps{
     onClick?: () => void;
-    text: string;
+    children: React.ReactNode;
     variant?: "primary" | "secondary";
 }
 
 export const Button: React.ComponentType<ButtonProps> = ({
     onClick,
-    text,
+    children,
     variant = "primary"
 }) => (
     <button
@@ -22,6 +22,6 @@ export const Button: React.ComponentType<ButtonProps> = ({
         onClick={ onClick }
         type="button"
     >
-        { text }
+        { children }
     </button>
 );

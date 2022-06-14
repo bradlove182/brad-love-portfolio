@@ -30,10 +30,9 @@ export const ProjectCard: React.ComponentType<ProjectCardProps> = ({
 
     const {
         title,
-        roles,
         description,
-        year,
-        tags
+        tags,
+        link
     } = project;
 
     return (
@@ -45,46 +44,43 @@ export const ProjectCard: React.ComponentType<ProjectCardProps> = ({
             whileInView="visible"
         >
             <div className={ style.wrapper }>
-                <div className={ style.tags }>
-                    {
-                        tags.map((tag) => (
-                            <span className={ style.tag } key={ tag }>
-                                { tag }
-                            </span>
-                        ))
-                    }
-                </div>
-                <h2 className={ style.title }>
-                    { title }
-                </h2>
-                <p className={ style.description }>
-                    { description }
-                </p>
                 <div className={ style.content }>
-                    <div className={ style.category }>
-                        <div className={ style.name }>
-                            { "Role" }
-                        </div>
-                        <ul>
-                            {
-                                roles.map((role) => (
-                                    <li key={ role }>
-                                        { role }
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                    <div className={ style.category }>
-                        <div className={ style.name }>
-                            { "Year" }
-                        </div>
-                        <p>
-                            { year }
-                        </p>
+                    <h2 className={ style.title }>
+                        { title }
+                    </h2>
+                    <p className={ style.description }>
+                        { description }
+                    </p>
+                    <div className={ style.tags }>
+                        {
+                            tags.map((tag) => (
+                                <span className={ style.tag } key={ tag }>
+                                    { tag }
+                                </span>
+                            ))
+                        }
                     </div>
                 </div>
-                <Button text="View" />
+                <a href={ link } rel="noreferrer" target="_blank">
+                    <Button>
+                        { "View" }
+                        <svg
+                            fill="none"
+                            height="20"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="3"
+                            viewBox="0 0 24 24"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" x2="21" y1="14" y2="3" />
+                        </svg>
+                    </Button>
+                </a>
             </div>
         </motion.div>
     );

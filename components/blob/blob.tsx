@@ -1,6 +1,5 @@
 
 import React, {
-    useEffect,
     useMemo,
     useRef
 } from "react";
@@ -49,23 +48,9 @@ export const Blob: React.ComponentType<BlobProps> = ({
         })
     );
     const { scrollYProgress } = useViewportScroll();
-    const {
-        viewport,
-        clock
-    } = useThree();
+    const { viewport } = useThree();
 
     const scale = useMemo(() => viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4, [viewport]);
-
-    useEffect(() => {
-
-        if(document.visibilityState !== "visible" && clock.running){
-            clock.stop();
-            return;
-        }
-
-        clock.start();
-
-    }, [document.visibilityState]);
 
     useFrame((state, delta) => {
 
@@ -100,8 +85,6 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
         blob.current.geometry.computeVertexNormals();
         position.needsUpdate = true;
-
-        return undefined;
 
     });
 

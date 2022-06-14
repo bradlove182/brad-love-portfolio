@@ -13,11 +13,14 @@ import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
 import { SiteTitle } from "../components/site-title";
 import { ThemeProvider } from "../components/theme";
+import { SectionTitle } from "../components/section-title";
 
 import type { ThemeKey } from "../themes";
 import type { AppProps } from "next/app";
 
-const BlobRender = dynamic(() => import("../components/blob"));
+const BlobRender = dynamic(() => import("../components/blob"), {
+    ssr: false
+});
 
 const MyApp = ({
     Component,
@@ -39,9 +42,7 @@ const MyApp = ({
                 <meta content="Bradley Love" name="description" />
                 <link href="/favicon.ico" rel="icon" />
             </Head>
-            <Suspense>
-                <BlobRender />
-            </Suspense>
+            <BlobRender />
             <SiteTitle />
             <Navigation onThemeChange={ handleThemeChange } theme={ theme } />
             <Component { ...pageProps } />
