@@ -6,11 +6,8 @@ import style from "./index.module.scss";
 import type { Variants } from "framer-motion";
 
 const heading: Variants = {
-    hidden: {
-        opacity: 0
-    },
+    hidden: {},
     show: {
-        opacity: 1,
         transition: {
             staggerChildren: 0.05
         }

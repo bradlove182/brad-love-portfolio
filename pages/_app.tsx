@@ -1,6 +1,5 @@
 
 import React, {
-    Suspense,
     useCallback,
     useState
 } from "react";
@@ -13,7 +12,6 @@ import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
 import { SiteTitle } from "../components/site-title";
 import { ThemeProvider } from "../components/theme";
-import { SectionTitle } from "../components/section-title";
 
 import type { ThemeKey } from "../themes";
 import type { AppProps } from "next/app";
