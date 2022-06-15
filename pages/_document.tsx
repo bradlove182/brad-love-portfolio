@@ -13,8 +13,8 @@ class MyDocument extends Document{
         return (
             <Html lang="en">
                 <Head>
-                    <link href="https://fonts.googleapis.com" rel="preconnect" />
-                    <link crossOrigin="true" href="https://fonts.gstatic.com" rel="preconnect" />
+                    <link as="font" crossOrigin="anonymous" href="/fonts/JetBrainsMono-Regular.ttf" rel="preload" type="font/ttf" />
+                    <link as="font" crossOrigin="anonymous" href="/fonts/JetBrainsMono-Bold.ttf" rel="preload" type="font/ttf" />
                 </Head>
                 <body>
                     <Main />
