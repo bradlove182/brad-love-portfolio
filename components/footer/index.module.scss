@@ -1,22 +1,21 @@
 
 .footer{
 
+    color: var(--color-font-contrast);
     display: grid;
-    grid-column-gap: 1.25em;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-areas: "title links";
     mix-blend-mode: difference;
     padding: var(--padding);
 
     .title{
 
-        grid-column: 1 / 4;
+        grid-area: title;
 
     }
 
     .links{
 
-        align-self: flex-end;
-        grid-column: 12 / 12;
+        grid-area: links;
 
     }
 
