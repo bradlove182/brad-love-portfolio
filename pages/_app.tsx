@@ -7,11 +7,13 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 
 import "../styles/globals.scss";
+import "../styles/fonts.scss";
 
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
 import { SiteTitle } from "../components/site-title";
 import { ThemeProvider } from "../components/theme";
+// Import { BlobRender } from "../components/blob";
 
 import type { ThemeKey } from "../themes";
 import type { AppProps } from "next/app";
