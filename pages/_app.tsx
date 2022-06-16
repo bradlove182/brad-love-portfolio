@@ -9,10 +9,9 @@ import dynamic from "next/dynamic";
 import "../styles/globals.scss";
 import "../styles/fonts.scss";
 
-import { Footer } from "../components/footer";
-import { Navigation } from "../components/navigation";
 import { SiteTitle } from "../components/site-title";
 import { ThemeProvider } from "../components/theme";
+import { ThemePicker } from "../components/theme-picker";
 // Import { BlobRender } from "../components/blob";
 
 import type { ThemeKey } from "../themes";
@@ -44,9 +43,8 @@ const MyApp = ({
             </Head>
             <BlobRender />
             <SiteTitle />
-            <Navigation onThemeChange={ handleThemeChange } theme={ theme } />
+            <ThemePicker currentTheme={ theme } onThemeChange={ handleThemeChange } />
             <Component { ...pageProps } />
-            <Footer />
         </ThemeProvider>
     );
 

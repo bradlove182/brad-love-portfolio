@@ -1,12 +1,12 @@
 import React, {
     useCallback,
-    useEffect,
     useState
 } from "react";
 import { motion } from "framer-motion";
 
 import { themes } from "../../themes";
 
+import { ThemePickerDropdown } from "./dropdown";
 import style from "./index.module.scss";
 
 import type { ThemeKey } from "../../themes";
@@ -23,10 +23,72 @@ const container: Variants = {
 
 const child: Variants = {
     hidden: {
+        opacity: 0,
         y: "200%"
     },
     show: {
+        opacity: 1,
         y: "0%"
+    }
+};
+
+const menu: Variants = {
+    close: {
+        display: "block",
+        opacity: 1,
+        y: "0%"
+    },
+    open: {
+        opacity: 0,
+        transitionEnd: {
+            display: "none"
+        },
+        y: "-5%"
+    }
+};
+
+const leftLine: Variants = {
+    close: {
+        x1: 6,
+        x2: 18,
+        y1: 6,
+        y2: 18
+    },
+    open: {
+        x1: 12,
+        x2: 12,
+        y1: 3,
+        y2: 3
+    }
+};
+
+const middleLine: Variants = {
+    close: {
+        x1: 12,
+        x2: 12,
+        y1: 12,
+        y2: 12
+    },
+    open: {
+        x1: 12,
+        x2: 12,
+        y1: 12,
+        y2: 12
+    }
+};
+
+const rightLine: Variants = {
+    close: {
+        x1: 18,
+        x2: 6,
+        y1: 6,
+        y2: 18
+    },
+    open: {
+        x1: 12,
+        x2: 12,
+        y1: 21,
+        y2: 21
     }
 };
 
@@ -40,72 +102,54 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
     onThemeChange
 }) => {
 
-    const [auto, setAuto] = useState<boolean>(true);
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
-    const handleChangeAuto = useCallback(() => {
+    const handleShowDropdown = useCallback(() => {
 
-        setAuto((previous) => !previous);
+        setShowDropdown((previous) => !previous);
 
     }, []);
-
-    const changeTheme = useCallback((key: ThemeKey) => () => {
-        onThemeChange(key);
-        setAuto(false);
-    }, []);
-
-    useEffect(() => {
-
-        const themeKeys = Object.keys(themes) as ThemeKey[];
-        const currentIndex = themeKeys.indexOf(currentTheme);
-        const timer = setInterval(() => {
-
-            if(auto){
-
-                const nextIndex = currentIndex + 1;
-                onThemeChange(nextIndex >= themeKeys.length ? themeKeys[0] : themeKeys[nextIndex]);
-
-            }
-
-        }, 10_000);
-
-        return () => {
-            clearInterval(timer);
-        };
-
-    }, [currentTheme, auto, onThemeChange]);
 
     return (
         <motion.div
+            animate={ "show" }
             className={ style.theme }
             initial={ "hidden" }
             variants={ container }
-            whileInView={ "show" }
         >
-            <motion.span
-                className={ [
-                    style.text,
-                    auto ? style.auto : undefined
-                ].filter(Boolean).join(" ") }
-                onClick={ handleChangeAuto }
-                variants={ child }
+            <div className={ style.button } onClick={ handleShowDropdown }>
+                <motion.span
+                    className={ style.blob }
+                    style={ {
+                        backgroundColor: themes[currentTheme].background
+                    } }
+                    variants={ child }
+                />
+                <motion.svg
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="4"
+                    variants={ child }
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <motion.line animate={ showDropdown ? "close" : "open" } initial={ "open" } variants={ leftLine } />
+                    <motion.line animate={ showDropdown ? "close" : "open" } initial={ "open" } variants={ middleLine } />
+                    <motion.line animate={ showDropdown ? "close" : "open" } initial={ "open" } variants={ rightLine } />
+                </motion.svg>
+            </div>
+            <motion.div
+                animate={ showDropdown ? "close" : "open" }
+                className={ style.wrapper }
+                initial={ "open" }
+                variants={ menu }
             >
-                { "AUTO" }
-            </motion.span>
-            {
-                Object.keys(themes).map((key) => (
-                    <motion.span
-                        className={ [
-                            currentTheme === key ? style.active : undefined,
-                            style.blob
-                        ].filter(Boolean).join(" ") }
-                        key={ key }
-                        onClick={ changeTheme(key as ThemeKey) } style={ {
-                            backgroundColor: themes[key as ThemeKey].background
-                        } }
-                        variants={ child }
-                    />
-                ))
-            }
+                <ThemePickerDropdown currentTheme={ currentTheme } onThemeChange={ onThemeChange } />
+            </motion.div>
         </motion.div>
     );
 

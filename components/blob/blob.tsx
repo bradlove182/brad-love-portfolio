@@ -1,5 +1,6 @@
 
 import React, {
+    useEffect,
     useMemo,
     useRef
 } from "react";
@@ -48,9 +49,25 @@ export const Blob: React.ComponentType<BlobProps> = ({
         })
     );
     const { scrollYProgress } = useViewportScroll();
-    const { viewport } = useThree();
+    const {
+        viewport,
+        clock
+    } = useThree();
 
     const scale = useMemo(() => viewport.width > viewport.height ? viewport.aspect * 0.825 : viewport.aspect * 1.4, [viewport]);
+
+    useEffect(() => {
+
+        console.log(document.hidden);
+
+        if(document.hidden){
+            clock.stop();
+            return;
+        }
+
+        clock.start();
+
+    }, [document.hidden]);
 
     useFrame((state, delta) => {
 

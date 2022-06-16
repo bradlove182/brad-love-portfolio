@@ -1,11 +1,18 @@
 
 .title{
 
-    color: var(--color-font-contrast);
+    align-items: center;
+    background: var(--brutal-white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--brutal-black);
+    display: flex;
     font-size: 1em;
     font-weight: bold;
+    height: 48px;
     left: var(--horizontal-padding);
-    mix-blend-mode: difference;
+    padding: 0 .4em;
     position: fixed;
     top: var(--vertical-padding);
     z-index: 1;

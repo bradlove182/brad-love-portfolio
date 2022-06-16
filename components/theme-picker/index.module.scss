@@ -1,57 +1,51 @@
 
 .theme{
 
-    align-items: center;
-    background-color: var(--brutal-white);
-    border: var(--border);
-    border-radius: var(--border-radius);
-    display: flex;
-    flex-flow: row nowrap;
-    gap: .5em;
-    justify-content: center;
-    overflow: hidden;
-    padding: .25em;
-    position: relative;
+    position: fixed;
+    right: var(--horizontal-padding);
+    top: var(--vertical-padding);
+    z-index: 1;
 
-    span{
+    .button{
 
-        &.text{
-
-            font-size: .5em;
-            font-weight: bold;
-            opacity: .5;
-
-            &.auto{
-
-                opacity: 1;
-
-            }
-
-        }
-
-        &.blob{
-
-            border: var(--border);
-            border-color: transparent;
-            border-radius: 1em;
-            height: 1em;
-            order: 1;
-            transition: border-color .2s ease-out;
-            width: 1em;
-
-        }
-
-        &.active{
-
-            border-color: var(--brutal-black);
-
-        }
+        align-items: center;
+        background-color: var(--brutal-white);
+        border: var(--border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        gap: .5em;
+        height: 48px;
+        justify-content: center;
+        overflow: hidden;
+        padding: .4em;
+        z-index: 2;
 
         &:hover{
 
             cursor: pointer;
 
         }
+
+    }
+
+    .blob{
+
+        border: var(--border);
+        border-radius: 1em;
+        height: 1.2em;
+        order: 1;
+        transition: border-color .2s ease-out;
+        width: 1.2em;
+
+    }
+
+    .wrapper{
+
+        position: absolute;
+        right: 0;
+        top: 3em;
 
     }
 
