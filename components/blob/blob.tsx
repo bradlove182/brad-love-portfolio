@@ -58,16 +58,24 @@ export const Blob: React.ComponentType<BlobProps> = ({
 
     useEffect(() => {
 
-        console.log(document.hidden);
+        const toggleClock = (): void => {
 
-        if(document.hidden){
-            clock.stop();
-            return;
-        }
+            if(clock.running){
+                clock.stop();
+                return;
+            }
 
-        clock.start();
+            clock.start();
 
-    }, [document.hidden]);
+        };
+
+        document.addEventListener("visibilitychange", toggleClock);
+
+        return () => {
+            document.removeEventListener("visibilitychange", toggleClock);
+        };
+
+    }, []);
 
     useFrame((state, delta) => {
 
