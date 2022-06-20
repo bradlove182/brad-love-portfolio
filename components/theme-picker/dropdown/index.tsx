@@ -7,13 +7,13 @@ import React, {
 import { motion } from "framer-motion";
 
 import { themes } from "../../../themes";
+import { useStore } from "../../../store";
 import { Toggle } from "../../toggle";
 
 import style from "./index.module.scss";
 
 import type { ThemeKey } from "../../../themes";
 import type { Variants } from "framer-motion";
-import type { ThemePickerProps } from "..";
 
 const container: Variants = {
     hidden: {},
@@ -35,12 +35,11 @@ const child: Variants = {
     }
 };
 
-export const ThemePickerDropdown: React.ComponentType<ThemePickerProps> = ({
-    onThemeChange,
-    currentTheme
-}) => {
+export const ThemePickerDropdown: React.ComponentType = () => {
 
     const [auto, setAuto] = useState<boolean>(true);
+    const themeKey = useStore((state) => state.themeKey);
+    const setTheme = useStore((state) => state.setTheme);
 
     const handleChangeAuto = useCallback((state: boolean) => {
 
@@ -49,20 +48,20 @@ export const ThemePickerDropdown: React.ComponentType<ThemePickerProps> = ({
     }, []);
 
     const changeTheme = useCallback((key: ThemeKey) => () => {
-        onThemeChange(key);
+        setTheme(key);
         setAuto(false);
     }, []);
 
     useEffect(() => {
 
         const themeKeys = Object.keys(themes) as ThemeKey[];
-        const currentIndex = themeKeys.indexOf(currentTheme);
+        const currentIndex = themeKeys.indexOf(themeKey);
         const timer = setInterval(() => {
 
             if(auto){
 
                 const nextIndex = currentIndex + 1;
-                onThemeChange(nextIndex >= themeKeys.length ? themeKeys[0] : themeKeys[nextIndex]);
+                setTheme(nextIndex >= themeKeys.length ? themeKeys[0] : themeKeys[nextIndex]);
 
             }
 
@@ -72,7 +71,7 @@ export const ThemePickerDropdown: React.ComponentType<ThemePickerProps> = ({
             clearInterval(timer);
         };
 
-    }, [currentTheme, auto, onThemeChange]);
+    }, [themeKey, auto, setTheme]);
 
     return (
         <motion.div
@@ -86,7 +85,7 @@ export const ThemePickerDropdown: React.ComponentType<ThemePickerProps> = ({
                     Object.keys(themes).map((key) => (
                         <motion.span
                             className={ [
-                                currentTheme === key ? style.active : undefined,
+                                themeKey === key ? style.active : undefined,
                                 style.blob
                             ].filter(Boolean).join(" ") }
                             key={ key }

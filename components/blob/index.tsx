@@ -1,7 +1,4 @@
-import React, {
-    Suspense,
-    useContext
-} from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Selection } from "@react-three/postprocessing";
 import {
@@ -10,7 +7,7 @@ import {
     Preload
 } from "@react-three/drei";
 
-import { ThemeContext } from "../theme";
+import { useStore } from "../../store";
 
 import { Blob } from "./blob";
 import { Effects } from "./effects";
@@ -19,7 +16,7 @@ import style from "./index.module.scss";
 
 export const BlobRender: React.ComponentType = () => {
 
-    const theme = useContext(ThemeContext);
+    const theme = useStore((state) => state.theme);
 
     return (
         <div className={ style.canvas }>

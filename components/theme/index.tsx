@@ -4,45 +4,32 @@ import React, {
     useMemo,
     useState
 } from "react";
+import Head from "next/head";
 
-import { themes } from "../../themes";
+import { paramCase } from "../../utils/case";
+import { useStore } from "../../store";
 
-import { ThemeContext } from "./context";
-
-import type {
-    Theme,
-    ThemeKey
-} from "../../themes";
-
-const paramCase = (string: string): string => string.split(/(?=[A-Z])/gu).map((word) => `${ word.charAt(0).toLocaleLowerCase() }${ word.slice(1) }`).join("-");
+import type { Theme } from "../../themes";
 
 interface ThemeView extends Theme{
     vh: string;
     vw: string;
 }
 
-export interface ThemeProviderProps{
-    theme: ThemeKey;
-    children: React.ReactNode;
-}
-
-export const ThemeProvider: React.ComponentType<ThemeProviderProps> = ({
-    theme,
-    children
-}) => {
+export const ThemeController: React.ComponentType = () => {
 
     const [viewport, setViewport] = useState<Pick<ThemeView, "vh" | "vw">>({
         vh: "0px",
         vw: "0px"
     });
 
-    const currentTheme = useMemo(() => themes[theme], [theme]);
+    const theme = useStore((state) => state.theme);
 
     const merged: Pick<ThemeView, keyof ThemeView> = useMemo(() => ({
-        ...currentTheme,
+        ...theme,
         ...viewport
     }), [
-        currentTheme,
+        theme,
         viewport
     ]);
 
@@ -72,18 +59,15 @@ export const ThemeProvider: React.ComponentType<ThemeProviderProps> = ({
     }, []);
 
     return (
-        <React.Fragment>
+        <Head>
             <style>
                 {`
-                    :root {
-                        ${ variables.join(";\n") }
-                    }
-                `}
+                :root {
+                    ${ variables.join(";\n") }
+                }
+            `}
             </style>
-            <ThemeContext.Provider value={ currentTheme }>
-                { children }
-            </ThemeContext.Provider>
-        </React.Fragment>
+        </Head>
     );
 
 };

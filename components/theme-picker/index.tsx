@@ -4,12 +4,11 @@ import React, {
 } from "react";
 import { motion } from "framer-motion";
 
-import { themes } from "../../themes";
+import { useStore } from "../../store";
 
 import { ThemePickerDropdown } from "./dropdown";
 import style from "./index.module.scss";
 
-import type { ThemeKey } from "../../themes";
 import type { Variants } from "framer-motion";
 
 const container: Variants = {
@@ -92,17 +91,10 @@ const rightLine: Variants = {
     }
 };
 
-export interface ThemePickerProps{
-    currentTheme: ThemeKey;
-    onThemeChange: (key: ThemeKey) => void;
-}
-
-export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
-    currentTheme,
-    onThemeChange
-}) => {
+export const ThemePicker: React.ComponentType = () => {
 
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
+    const theme = useStore((state) => state.theme);
 
     const handleShowDropdown = useCallback(() => {
 
@@ -121,7 +113,7 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
                 <motion.span
                     className={ style.blob }
                     style={ {
-                        backgroundColor: themes[currentTheme].background
+                        backgroundColor: theme.background
                     } }
                     variants={ child }
                 />
@@ -148,7 +140,7 @@ export const ThemePicker: React.ComponentType<ThemePickerProps> = ({
                 initial={ "open" }
                 variants={ menu }
             >
-                <ThemePickerDropdown currentTheme={ currentTheme } onThemeChange={ onThemeChange } />
+                <ThemePickerDropdown />
             </motion.div>
         </motion.div>
     );

@@ -19,7 +19,8 @@
     "postprocessing": "^6.27.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "three": "^0.140.0"
+    "three": "^0.140.0",
+    "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@newsteam/eslint-config": "^0.0.121",
