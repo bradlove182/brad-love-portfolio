@@ -28,7 +28,7 @@ export const projects: Project[] = [
         year: 2019
     },
     {
-        description: "HeraldLIVE is a digital newspaper based in Nelson Mandela Bay.",
+        description: "HeraldLIVE is a digital newspaper based in Nelson Mandela Bay, South Africa.",
         link: "https://www.heraldlive.co.za/",
         roles: [
             "Website Design",

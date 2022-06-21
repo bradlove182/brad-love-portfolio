@@ -9,6 +9,7 @@ import "../styles/fonts.scss";
 import { SiteTitle } from "../components/site-title";
 import { ThemePicker } from "../components/theme-picker";
 import { ThemeController } from "../components/theme";
+import { Footer } from "../components/footer";
 
 import type { AppProps } from "next/app";
 
@@ -33,6 +34,7 @@ const MyApp = ({
         <SiteTitle />
         <ThemePicker />
         <Component { ...pageProps } />
+        <Footer />
     </React.Fragment>
 );
 
