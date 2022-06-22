@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { SectionTitle } from "../section-title";
 import { Card } from "../card";
+import { Meme } from "../meme";
 
 import style from "./index.module.scss";
 
@@ -29,6 +30,9 @@ const card: Variants = {
     },
     show: {
         opacity: 1,
+        transitionEnd: {
+            y: 0
+        },
         y: "0%"
     }
 };
@@ -51,7 +55,15 @@ export const About: React.ComponentType = () => (
                     { "I specialise in a perfect blend of user interfaces and modern development." }
                 </p>
                 <p>
-                    { "With a background in both digital design and development I am capable of creating a harmonious relationship between both worlds." }
+                    { "With a background in both digital " }
+                    <Meme meme="/gifs/designer.gif">
+                        { "design" }
+                    </Meme>
+                    { " and " }
+                    <Meme meme="/gifs/developer.gif">
+                        { "development" }
+                    </Meme>
+                    { " I am capable of creating a harmonious relationship between both worlds." }
                 </p>
             </Card>
             <Card title="Location" variants={ card }>
@@ -60,16 +72,30 @@ export const About: React.ComponentType = () => (
                 </p>
                 <p>
                     { "Currently under employment as a Front-End Engineer at " }
-                    <a href="https://newsteam.io" rel="noreferrer" target="_blank">
-                        {"News Team"}
-                    </a>
+                    <Meme meme="/gifs/newsteam.gif">
+                        <a href="https://newsteam.io" rel="noreferrer" target="_blank">
+                            {"News Team"}
+                        </a>
+                    </Meme>
                     {"."}
                 </p>
             </Card>
             <Card title="After Hours" variants={ card }>
                 <p>
                     { "While taking a break from creating and discovering web experiences, " }
-                    { "I can usually be found playing games, watching football and spending quality time with my family." }
+                    { "I can usually be found " }
+                    <Meme meme="/gifs/gaming.gif">
+                        { "playing games" }
+                    </Meme>
+                    { ", watching " }
+                    <Meme meme="/gifs/football.gif">
+                        { "football" }
+                    </Meme>
+                    { " and spending quality time with my " }
+                    <Meme meme="/gifs/family.gif">
+                        { "family" }
+                    </Meme>
+                    {"."}
                 </p>
             </Card>
         </motion.div>

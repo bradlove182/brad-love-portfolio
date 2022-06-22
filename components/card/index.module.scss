@@ -5,13 +5,13 @@
     border: var(--border);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    overflow: hidden;
     width: 100%;
 
     .title{
 
         background-color: var(--brutal-green);
         border-bottom: var(--border);
+        border-radius: .25em .25em 0 0;
         padding: 1em;
 
         h2{

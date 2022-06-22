@@ -1,22 +1,29 @@
 
 import {
     useEffect,
-    useRef
+    useState
 } from "react";
-import { Vector3 } from "three";
 
-export const useMousePosition = (): Vector3 => {
+interface MousePosition{
+    x: number;
+    y: number;
+}
 
-    const mouseVector = useRef<Vector3>(new Vector3());
+export const useMousePosition = (): [MousePosition["x"], MousePosition["y"]] => {
+
+    const [mousePosition, setMousePosition] = useState<MousePosition>({
+        x: 0,
+        y: 0
+    });
 
     useEffect(() => {
 
         const mouseHandler = (event: MouseEvent): void => {
 
-            const mouseX = event.clientX / window.innerWidth * 2 - 1;
-            const mouseY = event.clientY / window.innerHeight * 2 - 1;
-
-            mouseVector.current.set(mouseX, -mouseY, 0);
+            setMousePosition({
+                x: event.clientX,
+                y: event.clientY
+            });
 
         };
 
@@ -28,6 +35,6 @@ export const useMousePosition = (): Vector3 => {
 
     }, []);
 
-    return mouseVector.current;
+    return [mousePosition.x, mousePosition.y];
 
 };
