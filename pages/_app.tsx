@@ -26,7 +26,7 @@ const MyApp = ({
             <title>
                 { "Bradley Love" }
             </title>
-            <meta content="Bradley Love" name="description" />
+            <meta content="Personal portfolio of Bradley Love" name="description" />
             <link href="/favicon.ico" rel="icon" />
         </Head>
         <ThemeController />
