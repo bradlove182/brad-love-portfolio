@@ -40,7 +40,7 @@ export const Meme: React.ComponentType<MemeProps> = ({
             { children }
             {
                 // eslint-disable-next-line @next/next/no-img-element -- no
-                showImage ? <img alt={ meme } src={ meme } style={ { transform: `translate(${ x }px, ${ y + OFFSET }px)` } } width="250px" /> : undefined
+                showImage ? <img alt={ meme } src={ meme } style={ { transform: `translate(${ x - 250 / 2 }px, ${ y + OFFSET }px)` } } width="250px" /> : undefined
             }
         </span>
     );

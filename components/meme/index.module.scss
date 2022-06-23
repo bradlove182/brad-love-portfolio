@@ -3,6 +3,18 @@
 
     text-decoration: underline;
 
+    &:hover{
+
+        cursor: zoom-in;
+
+        a{
+
+            cursor: pointer;
+
+        }
+
+    }
+
     img{
 
         left: 0;
