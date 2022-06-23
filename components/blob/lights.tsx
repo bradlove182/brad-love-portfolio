@@ -13,3 +13,5 @@ export const Lights: React.ComponentType = () => (
         <directionalLight color="white" position={ DIRECTION_LIGHT } />
     </React.Fragment>
 );
+
+export default Lights;

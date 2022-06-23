@@ -6,13 +6,23 @@ import {
     AdaptiveEvents,
     Preload
 } from "@react-three/drei";
+import dynamic from "next/dynamic";
 
 import { useStore } from "../../store";
 
-import { Blob } from "./blob";
-import { Effects } from "./effects";
-import { Lights } from "./lights";
 import style from "./index.module.scss";
+
+const Effects = dynamic(() => import("./effects"), {
+    ssr: false
+});
+
+const Lights = dynamic(() => import("./lights"), {
+    ssr: false
+});
+
+const Blob = dynamic(() => import("./blob"), {
+    ssr: false
+});
 
 export const BlobRender: React.ComponentType = () => {
 
@@ -21,16 +31,14 @@ export const BlobRender: React.ComponentType = () => {
     return (
         <div className={ style.canvas }>
             <Canvas>
-                <Suspense>
-                    <Preload />
-                    <AdaptiveDpr />
-                    <AdaptiveEvents />
-                    <Lights />
-                    <Selection>
-                        <Blob blobColor={ theme.blobColor } />
-                        <Effects />
-                    </Selection>
-                </Suspense>
+                <Preload />
+                <AdaptiveDpr />
+                <AdaptiveEvents />
+                <Lights />
+                <Selection>
+                    <Blob blobColor={ theme.blobColor } />
+                    <Effects />
+                </Selection>
             </Canvas>
         </div>
     );

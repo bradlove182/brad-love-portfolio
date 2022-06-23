@@ -14,3 +14,4 @@ export const Effects: React.ComponentType = () => (
     </EffectComposer>
 );
 
+export default Effects;

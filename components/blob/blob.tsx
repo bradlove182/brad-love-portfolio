@@ -121,3 +121,5 @@ export const Blob: React.ComponentType<BlobProps> = ({
         </Select>
     );
 };
+
+export default Blob;
