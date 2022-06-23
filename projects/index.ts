@@ -56,17 +56,5 @@ export const projects: Project[] = [
         ],
         title: "DispatchLIVE",
         year: 2018
-    },
-    {
-        description: "SowetanLIVE is the digital version for The Sowetan daily newspaper published in South Africa.",
-        link: "https://www.sowetanlive.co.za/",
-        roles: [
-            "Website Development"
-        ],
-        tags: [
-            "Development"
-        ],
-        title: "SowetanLIVE",
-        year: 2017
     }
 ];
