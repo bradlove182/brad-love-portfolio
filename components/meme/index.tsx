@@ -8,7 +8,9 @@ import { useMousePosition } from "../../hooks/use-mouse-position";
 
 import style from "./index.module.scss";
 
-const OFFSET = 20;
+const offset = 20;
+const width = 250;
+const center = width / 2;
 
 export interface MemeProps{
     meme: string;
@@ -39,8 +41,8 @@ export const Meme: React.ComponentType<MemeProps> = ({
         <span className={ style.meme } onMouseEnter={ mouseEnter } onMouseLeave={ mouseLeave }>
             { children }
             {
-                // eslint-disable-next-line @next/next/no-img-element -- no
-                showImage ? <img alt={ meme } src={ meme } style={ { transform: `translate(${ x - 250 / 2 }px, ${ y + OFFSET }px)` } } width="250px" /> : undefined
+                // eslint-disable-next-line @next/next/no-img-element, max-len -- no
+                showImage ? <img alt={ meme } src={ meme } style={ { transform: `translate(${ x - center }px, ${ y + offset }px)` } } width={ width } /> : undefined
             }
         </span>
     );
