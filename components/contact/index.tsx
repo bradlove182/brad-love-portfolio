@@ -45,6 +45,7 @@ export const Contact: React.ComponentType = () => (
             <motion.div className={ style.social } variants={ social }>
                 <a
                     href="mailto:brad@bradlove.co.za"
+                    title="Email"
                 >
 
                     <svg
@@ -68,6 +69,7 @@ export const Contact: React.ComponentType = () => (
                     href="https://github.com/bradlove182"
                     rel="noreferrer"
                     target="_blank"
+                    title="Github"
                 >
                     <svg
                         fill="none"
@@ -92,6 +94,7 @@ export const Contact: React.ComponentType = () => (
                     href="https://www.linkedin.com/in/bradley-love-000252120/"
                     rel="noreferrer"
                     target="_blank"
+                    title="LinkedIn"
                 >
                     <svg
                         fill="none"
