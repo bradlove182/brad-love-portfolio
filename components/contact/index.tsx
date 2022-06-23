@@ -91,7 +91,7 @@ export const Contact: React.ComponentType = () => (
             </motion.div>
             <motion.div className={ style.social } variants={ social }>
                 <a
-                    href="https://www.linkedin.com/in/bradley-love-000252120/"
+                    href="https://www.linkedin.com/in/bradley-love/"
                     rel="noreferrer"
                     target="_blank"
                     title="LinkedIn"
