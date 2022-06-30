@@ -26,8 +26,11 @@ const MyApp = ({
             <title>
                 { "Bradley Love" }
             </title>
+            <meta content="width=device-width, initial-scale=1" name="viewport" />
             <meta content="Creative Developer based in Cape Town, South Africa." name="description" />
             <link href="/favicon.ico" rel="icon" />
+            <link as="font" crossOrigin="anonymous" href="/fonts/JetBrainsMono-Regular.ttf" rel="preload" type="font/ttf" />
+            <link as="font" crossOrigin="anonymous" href="/fonts/JetBrainsMono-Bold.ttf" rel="preload" type="font/ttf" />
         </Head>
         <ThemeController />
         <BlobRender />
