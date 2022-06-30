@@ -4,7 +4,6 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 
 import "../styles/globals.scss";
-import "../styles/fonts.scss";
 
 import { SiteTitle } from "../components/site-title";
 import { ThemePicker } from "../components/theme-picker";
@@ -31,6 +30,31 @@ const MyApp = ({
             <link href="/favicon.ico" rel="icon" />
             <link as="font" crossOrigin="anonymous" href="/fonts/JetBrainsMono-Regular.ttf" rel="preload" type="font/ttf" />
             <link as="font" crossOrigin="anonymous" href="/fonts/JetBrainsMono-Bold.ttf" rel="preload" type="font/ttf" />
+            <style>
+                {
+                    `
+                        @font-face {
+
+                            font-display: swap;
+                            font-family: "JetBrains Mono";
+                            font-style: normal;
+                            font-weight: normal;
+                            src: url("/fonts/JetBrainsMono-Regular.ttf") format("truetype");
+
+                        }
+
+                        @font-face {
+
+                            font-display: swap;
+                            font-family: "JetBrains Mono";
+                            font-style: normal;
+                            font-weight: bold;
+                            src: url("/fonts/JetBrainsMono-Bold.ttf") format("truetype");
+
+                        }
+                    `
+                }
+            </style>
         </Head>
         <ThemeController />
         <BlobRender />
