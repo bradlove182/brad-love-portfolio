@@ -11,6 +11,24 @@ export interface Project{
 
 export const projects: Project[] = [
     {
+        // eslint-disable-next-line max-len -- bru
+        description: "Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer.",
+        link: "https://apod.bradlove.dev/",
+        roles: [
+            "Logo Design",
+            "Website Design",
+            "Website Development"
+        ],
+        tags: [
+            "UX Design",
+            "UI Design",
+            "Logo Design",
+            "Development"
+        ],
+        title: "Astronomy Picture of the Day",
+        year: 2022
+    },
+    {
         description: "Vrye Weekblad is a progressive Afrikaans digital newspaper.",
         link: "https://www.vryeweekblad.com/",
         roles: [
