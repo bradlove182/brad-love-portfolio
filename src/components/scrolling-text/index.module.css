@@ -1,0 +1,22 @@
+.container {
+    align-items: center;
+    color: var(--color-font-contrast);
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100vh;
+    justify-content: center;
+    mix-blend-mode: difference;
+    width: 100vw;
+}
+
+.container .marquee {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.container .marquee .track {
+    display: flex;
+    flex-flow: row nowrap;
+    width: fit-content;
+}

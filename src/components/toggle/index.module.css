@@ -1,0 +1,44 @@
+.toggle {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5em;
+    justify-content: space-between;
+}
+
+.toggle .track {
+    background-color: var(--brutal-white);
+    border: var(--border);
+    border-radius: 1em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    transition: background-color 0.2s ease-out;
+    width: 2.5em;
+}
+
+.toggle .track .knob {
+    background-color: var(--brutal-black);
+    border: 2px solid var(--brutal-white);
+    border-radius: 1em;
+    height: 1em;
+    transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+    width: 1em;
+}
+
+.toggle .track.active {
+    background-color: var(--brutal-black);
+    justify-content: flex-end;
+}
+
+.toggle .track.active .knob {
+    background-color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+.toggle .label {
+    font-size: 0.6em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}

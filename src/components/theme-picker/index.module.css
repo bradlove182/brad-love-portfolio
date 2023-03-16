@@ -1,0 +1,38 @@
+.theme {
+    position: fixed;
+    right: var(--horizontal-padding);
+    top: var(--vertical-padding);
+    z-index: 1;
+}
+
+.theme .button {
+    align-items: center;
+    background-color: var(--brutal-white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    gap: 0.5em;
+    height: 48px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0.4em;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.theme .blob {
+    border: var(--border);
+    border-radius: 1em;
+    height: 1.2em;
+    order: 1;
+    transition: border-color 0.2s ease-out;
+    width: 1.2em;
+}
+
+.theme .wrapper {
+    position: absolute;
+    right: 0;
+    top: 3em;
+}

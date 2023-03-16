@@ -1,0 +1,14 @@
+.meme {
+    text-decoration: underline;
+    cursor: zoom-in;
+}
+
+.meme:hover a {
+    cursor: pointer;
+}
+
+.meme img {
+    left: 0;
+    position: fixed;
+    top: 0;
+}

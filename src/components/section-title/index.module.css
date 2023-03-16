@@ -1,0 +1,10 @@
+.title {
+    color: var(--color-font-contrast);
+    display: flex;
+    mix-blend-mode: difference;
+    overflow: hidden;
+}
+
+.title .letter {
+    min-width: 0.6em;
+}

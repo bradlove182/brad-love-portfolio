@@ -1,0 +1,39 @@
+.contact {
+    padding: 6em var(--horizontal-padding);
+    position: relative;
+}
+
+.contact .socials {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+}
+
+.contact .social a {
+    align-items: center;
+    background-color: var(--brutal-white);
+    border: var(--border);
+    border-radius: 5em;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    height: 5em;
+    justify-content: center;
+    transition: transform 0.3s ease-out;
+    width: 5em;
+}
+
+.contact .social:nth-child(2) svg {
+    fill: var(--brutal-purple);
+}
+
+.contact .social:nth-child(3) svg {
+    fill: var(--brutal-blue);
+}
+
+.contact .social a svg {
+    fill: var(--brutal-yellow);
+}
+
+.contact .social a:hover {
+    transform: scale(1.1) rotate(-8deg);
+}

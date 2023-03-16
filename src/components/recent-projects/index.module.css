@@ -1,0 +1,10 @@
+.recent {
+    padding: 6em var(--horizontal-padding);
+    position: relative;
+}
+
+.recent .projects {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2em;
+}

@@ -1,0 +1,67 @@
+.card {
+    background-color: var(--brutal-white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    padding: 2em;
+}
+
+.card .wrapper {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 2em;
+    justify-content: space-between;
+}
+
+.card .wrapper .tags {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.5em;
+}
+
+.card .wrapper .tags .tag {
+    background-color: var(--brutal-green);
+    border: 2px solid var(--brutal-black);
+    border-radius: var(--border-radius);
+    font-size: 0.5em;
+    font-weight: bold;
+    height: fit-content;
+    padding: 0.5em;
+    text-transform: uppercase;
+}
+.card .wrapper .tags .tag:nth-child(2) {
+    background-color: var(--brutal-blue);
+}
+
+.card .wrapper .tags .tag:nth-child(3) {
+    background-color: var(--brutal-purple);
+}
+
+.card .wrapper .tags .tag:nth-child(4) {
+    background-color: var(--brutal-red);
+}
+
+.card .wrapper .title {
+    font-size: calc((var(--vw) + var(--vh) * 3));
+    margin: 0;
+}
+
+.card .wrapper .description {
+    margin: 0;
+    max-width: 600px;
+}
+
+.card .wrapper .content {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+    .card .wrapper {
+        align-items: flex-start;
+        flex-flow: column nowrap;
+    }
+}

@@ -1,0 +1,30 @@
+.card {
+    background-color: var(--brutal-white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+}
+
+.card .title {
+    background-color: var(--brutal-green);
+    border-bottom: var(--border);
+    border-radius: 0.25em 0.25em 0 0;
+    padding: 1em;
+}
+
+.card .title h2 {
+    margin: 0;
+}
+
+.card .body a {
+    text-decoration: underline;
+}
+
+.card:nth-of-type(2) .title {
+    background-color: var(--brutal-yellow);
+}
+
+.card:nth-of-type(3) .title {
+    background-color: var(--brutal-red);
+}
