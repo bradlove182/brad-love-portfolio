@@ -2,9 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Card, Grid, Text, Container } from "@bradlove/design-system";
 
 import { SectionTitle } from "../section-title";
-import { Card } from "../card";
 import { Meme } from "../meme";
 
 import style from "./index.module.css";
@@ -39,65 +39,76 @@ const card: Variants = {
 };
 
 export const About: React.ComponentType = () => (
-    <motion.div className={style.about} id="about">
-        <SectionTitle text="About Me" />
-        <motion.div
-            className={style.cards}
-            initial={"hidden"}
-            variants={container}
-            viewport={{ once: true }}
-            whileInView={"show"}
-        >
-            <Card title="Expertise" variants={card}>
-                <p>
-                    {
-                        "I specialise in a perfect blend of user interfaces and modern development."
-                    }
-                </p>
-                <p>
-                    {"With a background in both digital "}
-                    <Meme meme="/gifs/designer.gif">{"design"}</Meme>
-                    {" and "}
-                    <Meme meme="/gifs/developer.gif">{"development"}</Meme>
-                    {
-                        " I am capable of creating a harmonious relationship between both worlds."
-                    }
-                </p>
-            </Card>
-            <Card title="Location" variants={card}>
-                <p>
-                    {
-                        "I am based in Cape Town, South Africa where I was born and raised."
-                    }
-                </p>
-                <p>
-                    {"Currently under employment as a Front-End Engineer at "}
-                    <Meme meme="/gifs/newsteam.gif">
-                        <a
-                            href="https://newsteam.io"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
-                            {"News Team"}
-                        </a>
-                    </Meme>
-                    {"."}
-                </p>
-            </Card>
-            <Card title="After Hours" variants={card}>
-                <p>
-                    {
-                        "While taking a break from creating and discovering web experiences, "
-                    }
-                    {"I can usually be found "}
-                    <Meme meme="/gifs/gaming.gif">{"playing games"}</Meme>
-                    {", watching "}
-                    <Meme meme="/gifs/football.gif">{"football"}</Meme>
-                    {" and spending quality time with my "}
-                    <Meme meme="/gifs/family.gif">{"family"}</Meme>
-                    {"."}
-                </p>
-            </Card>
-        </motion.div>
-    </motion.div>
+    <Container>
+        <Grid as="section" columns={1}>
+            <Text as="h2">{"About Me"}</Text>
+            <Grid columns={3} gap={5} flow="row" alignItems="stretch">
+                <Card elevation={3}>
+                    <Card.Header>{"Expertise"}</Card.Header>
+                    <Card.Body>
+                        <Text>
+                            {
+                                "I specialise in a perfect blend of user interfaces and modern development."
+                            }
+                        </Text>
+                        <Text>
+                            {"With a background in both digital "}
+                            <Meme meme="/gifs/designer.gif">{"design"}</Meme>
+                            {" and "}
+                            <Meme meme="/gifs/developer.gif">
+                                {"development"}
+                            </Meme>
+                            {
+                                " I am capable of creating a harmonious relationship between both worlds."
+                            }
+                        </Text>
+                    </Card.Body>
+                </Card>
+                <Card elevation={3}>
+                    <Card.Header>{"Location"}</Card.Header>
+                    <Card.Body>
+                        <Text>
+                            {
+                                "I am based in Cape Town, South Africa where I was born and raised."
+                            }
+                        </Text>
+                        <Text>
+                            {
+                                "Currently under employment as a Front-End Engineer at "
+                            }
+                            <Meme meme="/gifs/newsteam.gif">
+                                <a
+                                    href="https://newsteam.io"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    {"News Team"}
+                                </a>
+                            </Meme>
+                            {"."}
+                        </Text>
+                    </Card.Body>
+                </Card>
+                <Card elevation={3}>
+                    <Card.Header>{"After Hours"}</Card.Header>
+                    <Card.Body>
+                        <Text>
+                            {
+                                "While taking a break from creating and discovering web experiences, "
+                            }
+                            {"I can usually be found "}
+                            <Meme meme="/gifs/gaming.gif">
+                                {"playing games"}
+                            </Meme>
+                            {", watching "}
+                            <Meme meme="/gifs/football.gif">{"football"}</Meme>
+                            {" and spending quality time with my "}
+                            <Meme meme="/gifs/family.gif">{"family"}</Meme>
+                            {"."}
+                        </Text>
+                    </Card.Body>
+                </Card>
+            </Grid>
+        </Grid>
+    </Container>
 );

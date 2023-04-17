@@ -1,10 +1,8 @@
-import { JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 
-import { SiteTitle } from "@components/site-title";
-import { ThemePicker } from "@components/theme-picker";
-import { ThemeController } from "@components/theme";
+import { Navigation } from "@components/navigation";
 import { Footer } from "@components/footer";
 
 import "@styles/globals.css";
@@ -13,7 +11,7 @@ const BlobRender = dynamic(() => import("@components/blob"), {
     ssr: false,
 });
 
-const font = JetBrains_Mono({
+const font = Inter({
     subsets: ["latin"],
     display: "swap",
 });
@@ -30,10 +28,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en" className={font.className}>
             <body>
-                <ThemeController />
+                <Navigation />
                 <BlobRender />
-                <SiteTitle />
-                <ThemePicker />
                 {children}
                 <Footer />
             </body>

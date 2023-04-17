@@ -1,6 +1,6 @@
 .container {
     align-items: center;
-    color: var(--color-font-contrast);
+    color: var(--text-amplified);
     display: flex;
     flex-flow: column nowrap;
     height: 100vh;

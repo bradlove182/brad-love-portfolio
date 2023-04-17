@@ -4,15 +4,16 @@ import { ScrollingText } from "@components/scrolling-text";
 import { About } from "@components/about";
 import { RecentProjects } from "@components/recent-projects";
 import { Contact } from "@components/contact";
+import { Grid } from "@bradlove/design-system";
 
 const HomePage = () => {
     return (
-        <React.Fragment>
+        <Grid columns={1} gap={9}>
             <ScrollingText />
             <About />
             <RecentProjects />
             <Contact />
-        </React.Fragment>
+        </Grid>
     );
 };
 

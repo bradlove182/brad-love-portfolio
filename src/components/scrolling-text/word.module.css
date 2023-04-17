@@ -1,9 +1,9 @@
 .word {
     display: flex;
     flex-flow: row nowrap;
-    font-size: calc(var(--vh) + var(--vw) * 16);
+    font-size: clamp(16vw, 100vw, 0%);
     font-weight: bold;
-    line-height: calc(var(--vh) + var(--vw) * 16);
+    line-height: clamp(200px, 20rem, 100%);
     overflow: hidden;
     text-transform: uppercase;
     transition: color 1s ease-out;
@@ -12,7 +12,7 @@
 
 .word .delimeter {
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 4px var(--color-font-contrast);
+    -webkit-text-stroke: 4px var(--text-amplified);
 }
 
 .word .letter {

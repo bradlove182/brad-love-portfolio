@@ -2,40 +2,43 @@
 
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { Selection } from "@react-three/postprocessing";
-import { AdaptiveDpr, AdaptiveEvents, Preload } from "@react-three/drei";
+import { AdaptiveDpr, OrbitControls, Preload } from "@react-three/drei";
 import dynamic from "next/dynamic";
 
 import { useStore } from "../../store";
 
 import style from "./index.module.css";
 
-const Effects = dynamic(() => import("./effects"), {
-    ssr: false,
-});
-
 const Lights = dynamic(() => import("./lights"), {
     ssr: false,
 });
 
-const Blob = dynamic(() => import("./blob"), {
+const ChromeBlob = dynamic(() => import("./chrome-blob"), {
+    ssr: false,
+});
+
+const Gradient = dynamic(() => import("./gradient"), {
+    ssr: false,
+});
+
+const Refraction = dynamic(() => import("./refraction"), {
     ssr: false,
 });
 
 export const BlobRender: React.ComponentType = () => {
-    const theme = useStore((state) => state.theme);
-
     return (
         <div className={style.canvas}>
-            <Canvas>
+            <Canvas
+                dpr={window.devicePixelRatio}
+                camera={{ position: [0, 0, 2.4] }}
+            >
                 <Preload />
                 <AdaptiveDpr />
-                <AdaptiveEvents />
-                <Lights />
-                <Selection>
-                    <Blob blobColor={theme.blobColor} />
-                    <Effects />
-                </Selection>
+                <ambientLight intensity={1.0} />
+                <directionalLight intensity={4} position={[1, 5, 4]} />
+                <Gradient />
+                <Refraction />
+                <OrbitControls />
             </Canvas>
         </div>
     );
