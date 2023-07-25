@@ -6,7 +6,7 @@
     height: 100vh;
     justify-content: center;
     mix-blend-mode: difference;
-    width: 100vw;
+    width: 100%;
 }
 
 .container .marquee {
